@@ -1,7 +1,7 @@
 
 import './App.css';
 const data = [{ id: 1, name: 'Solar Panel 1', img: '01.jpg' }, { id: 2, name: 'Solar Panel 2', img: 'solar_panel_32.jpg' }, { id: 3, name: 'solar_panel_3', img: 'solar_panel_3.jpg' }]
-const list = []
+//const list = []
 function App() {
     return (
         <div className="App bg-neutral-200 h-auto fixed  flex justify-center  p-10">
