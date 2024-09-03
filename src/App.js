@@ -4,7 +4,7 @@ const data = [{ id: 1, name: 'Solar Panel 1', img: '01.jpg' }, { id: 2, name: 'S
 const list = []
 function App() {
     return (
-        <div className="App bg-neutral-200 h-auto fixed  flex justify-center ">
+        <div className="App bg-neutral-200 h-auto fixed  flex justify-center  p-10">
             <section class="text-center   ">
                 <div class=" space-y-7  text-pretty  ">
                     <p class="text-6xl font-light align-middle"> Why we should be greening our homes with plants </p>
