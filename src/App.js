@@ -30,18 +30,18 @@ function App() {
         <div className="flex justify-center gap-8">
           {images.map((prop) => {
             return (
-              <div className="relative flex justify-center  h-fit">
+              <div className="relative flex justify-center h-fit">
                 <img src={prop.src} alt="Solar Panel 1" className="h-72 w-80" />
                 {images.length > 1 && (
                   <button
-                    className=" absolute right-2 top-2 border-2 border-rose-500 rounded-full h-7 w-7 text-rose-600 font-bold"
+                    className="flex items-center justify-center h-8 w-8 absolute right-2 top-2 border border-red-500 rounded-full text-red-600 pb-1"
                     onClick={() => deleteImage(prop)}
                   >
                     x
                   </button>
                 )}
-                <div className="absolute left-auto right-auto -bottom-28 bg-white h-36 w-64  grid place-content-center shadow-md drop-shadow-lg space-y-4">
-                  <h2 className="text-lg font-extrabold">{prop.name}</h2>
+                <div className="absolute left-auto right-auto -bottom-28 bg-white h-36 w-64 grid place-content-center shadow-md drop-shadow-lg space-y-2">
+                  <h2 className="text-lg font-extrabold text-center">{prop.name}</h2>
                   <button className="bg-orange-500 px-6 py-2 text-white text-sm hover:bg-neutral-800 rounded-lg">
                     VIEW DETAIL
                   </button>
