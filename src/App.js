@@ -11,7 +11,7 @@ function App() {
         { id: 2, name: "Solar Panel 2", img: "solar_panel_32.jpg" },
         { id: 3, name: "Solar Panel 3", img: "solar_panel_3.jpg" },
     ])
-    //const [isVisible, setIsVisible] = useState(true);
+ 
     //.sort()
     //data.sort(function(a, b){return b - a});
     //data.reverse()
