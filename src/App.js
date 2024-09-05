@@ -1,26 +1,32 @@
 import "./App.css";
 import { useState } from 'react';
 
-let data = [
-  { id: 1, name: "Solar Panel 1", img: "01.jpg" },
-  { id: 2, name: "Solar Panel 2", img: "solar_panel_32.jpg" },
-  { id: 3, name: "Solar Panel 3", img: "solar_panel_3.jpg" },
-];
 
-function deleteData(item){
+
+
+
+function App() {
+   const [data,setTest] = useState([
+  { id: 1, name: "Solar Panel 1", img: "01.jpg" },
+ { id: 2, name: "Solar Panel 2", img: "solar_panel_32.jpg" },
+   { id: 3, name: "Solar Panel 3", img: "solar_panel_3.jpg" },
+ ])
+//.sort()
+ //data.sort(function(a, b){return b - a});
+//data.reverse()
+ function deleteData(item){
     const index = data.indexOf(item);
 
   
-  if (index > 0) { 
+  if (index >= 0) { 
     data.splice(index, 1); 
     data.filter((data) =>data !== item)
   }
     console.log(data); 
+   const newData = data.filter((data) =>data !== item)
 
-
+   setTest(newData)
 }
-
-function App() {
   return (
     <div className="bg-neutral-200 h-screen flex flex-col justify-center">
       <div className="flex flex-col items-center gap-16 conainer max-w-6xl mx-auto">
@@ -36,7 +42,9 @@ function App() {
           </p>
         </div>
         <div className="grid lg:grid-cols-3 content-center gap-8">
+      
           {data.map((i) => {
+            
             return (
               <div className="relative flex justify-center h-fit">
                 <img src={i.img} alt="Solar Panel 1" className="h-72 w-80" />
