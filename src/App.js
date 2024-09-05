@@ -11,11 +11,21 @@ function App() {
   const deleteImage = (item) => {
     const newImage = images.filter((image) => image !== item);
     setImages(newImage);
+ 
   };
+  const moveElement = (arr, fromIndex, toIndex,sIndex) => {
+ 
+    
+    const elementMove =[arr[fromIndex], arr[toIndex] , arr[sIndex]] = [arr[toIndex], arr[fromIndex], arr[sIndex]];
+     setImages(elementMove);
+     console.log(images)
+    };
+
+
 
   return (
     <div className="bg-neutral-200 h-screen flex flex-col justify-center">
-      <div className="flex flex-col items-center gap-16 conainer max-w-6xl mx-auto">
+      <div className="flex flex-col items-center gap-16 conainer max-w-6xl mx-auto ">
         <div className="flex flex-col items-center justify-center space-y-3.5">
           <p className="text-5xl text-center max-w-3xl">
             Why we should be greening our homes with plants
@@ -40,6 +50,7 @@ function App() {
                     x
                   </button>
                 )}
+
                 <div className="absolute left-auto right-auto -bottom-28 bg-white h-36 w-64 grid place-content-center shadow-md drop-shadow-lg space-y-2">
                   <h2 className="text-lg font-extrabold text-center">{prop.name}</h2>
                   <button className="bg-orange-500 px-6 py-2 text-white text-sm hover:bg-neutral-800 rounded-lg">
@@ -50,9 +61,22 @@ function App() {
             );
           })}
         </div>
-        <button className="border-2 border-neutral-950 px-14 py-4 text-slate-800 hover:text-white text-sm hover:bg-neutral-950 rounded-lg mt-32">
+        <button className="border-2 border-neutral-950 px-14 py-4 text-slate-800 hover:text-white text-sm hover:bg-neutral-950 rounded-lg mt-16">
           LEARN MORE
         </button>
+        <div className="flex space-x-4  ">
+        <button className="bg-sky-600 px-14 py-4 text-white text-sm hover:bg-neutral-950 rounded-lg " onClick={() => moveElement(images,0,1,2)}>
+         Move to two
+        </button>
+        <button className=" bg-emerald-600 px-14 py-4  text-white text-sm hover:bg-neutral-950 rounded-lg " onClick={() => moveElement(images,2,1,0)}>
+         Move to third
+        </button>
+        <button className=" bg-pink-300 px-14 py-4 text-white text-sm hover:bg-neutral-950 rounded-lg " onClick={() => moveElement(images,1,2,0)}>
+         Move to one
+        </button>
+        </div>
+
+       
       </div>
     </div>
   );
