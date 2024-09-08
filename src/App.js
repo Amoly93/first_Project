@@ -14,36 +14,26 @@ function App() {
     const newImage = images.filter((image) => image !== item);
     setImages(newImage);
   };
-  
-  // Move Aray Element
-  let text;
-  const move = (imageIndex) => {
-    if (imageIndex === 0) {
-      text = "Move to two";
-      //const newArrayButtonOne = images.splice(1,2,images[1],images[0])
-      const newArrayButtonOne = moveElement(images, 0, 1);
-      setImages(newArrayButtonOne);
-      console.log(images);
-    } else if (imageIndex === 1) {
-      text = "Move to three";
-      const newArrayButtonthree = moveElement(images, 1, 2);
-      setImages(newArrayButtonthree);
-      console.log(images);
-    } else if (imageIndex === 2) {
-      text = "Move to one";
-      //  const newArray = images.reverse()
-      const newArray = moveElement(images, 2, 0);
-      setImages(newArray);
-      console.log(images);
-    }
-  };
 
-  const moveElement = (arr, fromIndex, toIndex) => {
-    return arr.map((item, index) => {
-      if (index === toIndex) return arr[fromIndex];
-      if (index === fromIndex) return arr[toIndex];
-      return item;
-    });
+  // Move Aray Element
+
+  const move = (index) => {
+
+const newArray =[...images]
+const [deletItme] = newArray.splice(index,1)
+
+if (index === newArray.length){
+    const [deletItmetwo] = newArray.splice(0,1)
+    newArray.splice(0,0,deletItme)
+    newArray.splice(index,0,deletItmetwo)
+    setImages(newArray)
+}else{
+    newArray.splice(index+1,0,deletItme)
+    setImages(newArray)
+
+}
+
+
   };
 
   // View
@@ -62,7 +52,7 @@ function App() {
           </p>
         </div>
         <div className="flex justify-center gap-8">
-          {images.map((prop) => {
+          {images.map((prop,index) => {
             return (
               <div className="relative flex justify-center h-fit">
                 <img src={prop.src} alt="Solar Panel 1" className="h-72 w-80" />
@@ -84,9 +74,9 @@ function App() {
                   </button>
                   <button
                     className="bg-sky-600 px-14 py-4 text-white text-sm hover:bg-neutral-950 rounded-lg "
-                    onClick={() => move(images.indexOf(prop))}
+                    onClick={() => move(index)}
                   >
-                    {text}
+                  Move to next
                   </button>
                 </div>
               </div>
