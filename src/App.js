@@ -28,6 +28,11 @@ function App() {
     setImages(newArray);
   };
 
+  const obj = {
+    Amal: "first_name",
+    Bajaber: "last_name",
+  };
+
   // View
   return (
     <div className="bg-neutral-200 min-h-screen pt-12">
