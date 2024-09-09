@@ -32,7 +32,6 @@ function App() {
     Amal: "first_name",
     Bajaber: "last_name",
   };
-  
 
   //for...in
   for (const x in obj) {
@@ -44,6 +43,14 @@ function App() {
   details.forEach((details) => {
     console.log(`${obj[details]}: ${details}`);
   });
+
+  // show
+  const [text, setText] = useState("");
+  const [isOn, setIsOn] = useState(false);
+  function showPrint(T) {
+    setText(T);
+    setIsOn(true);
+  }
 
   // View
   return (
@@ -78,8 +85,11 @@ function App() {
                     <h2 className="text-lg font-semibold text-center">
                       {prop.name}
                     </h2>
-                    <button className="bg-orange-500 px-6 py-2 text-white text-sm hover:bg-neutral-800 rounded-lg">
-                      View details
+                    <button
+                      className="bg-orange-500 px-6 py-2 text-white text-sm hover:bg-neutral-800 rounded-lg"
+                      onClick={() => showPrint(prop.name)}
+                    >
+                      print details
                     </button>
                   </div>
                   <button
@@ -92,6 +102,17 @@ function App() {
               </div>
             );
           })}
+        </div>
+
+        <div className="flex gap-10 p-32">
+          <p>{isOn ? text : "no print"}</p>
+          <button
+            onClick={() => setIsOn(false)}
+            className="bg-red-600 px-6 py-2 text-white text-sm hover:bg-neutral-950 rounded-lg "
+          >
+            {" "}
+            Delete
+          </button>
         </div>
       </div>
     </div>
