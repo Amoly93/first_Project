@@ -18,23 +18,30 @@ function App() {
   // Move Aray Element
 
   const move = (index) => {
-
-const newArray =[...images]
-const [deletItme] = newArray.splice(index,1)
-
-if (index === newArray.length){
-    const [deletItmetwo] = newArray.splice(0,1)
-    newArray.splice(0,0,deletItme)
-    newArray.splice(index,0,deletItmetwo)
-    setImages(newArray)
-}else{
-    newArray.splice(index+1,0,deletItme)
-    setImages(newArray)
-
-}
-
-
+    const newArray = [...images];
+    const isLastItem = index === newArray.length - 1;
+    const [deletedItem] = newArray.splice(index, 1);
+    if (isLastItem) {
+      const [firstItem] = newArray.splice(0, 1);
+      newArray.splice(index, 0, firstItem);
+    }
+    newArray.splice(isLastItem ? 0 : index + 1, 0, deletedItem);
+    setImages(newArray);
   };
+  const obj = {
+    Amal: "first_name",
+    Bajaber: "last_name",
+  };
+  //for...in
+  for (const x in obj) {
+    console.log(`${obj[x]} :${x}`);
+  }
+
+  // forEach
+  let details = Object.keys(obj);
+details.forEach((details)=>{
+    console.log( `${obj[details]}: ${details}`)
+})
 
   // View
   return (
