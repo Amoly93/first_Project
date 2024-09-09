@@ -16,7 +16,6 @@ function App() {
   };
 
   // Move Aray Element
-
   const move = (index) => {
     const newArray = [...images];
     const isLastItem = index === newArray.length - 1;
@@ -28,11 +27,13 @@ function App() {
     newArray.splice(isLastItem ? 0 : index + 1, 0, deletedItem);
     setImages(newArray);
   };
-  
+
   const obj = {
     Amal: "first_name",
     Bajaber: "last_name",
   };
+  
+
   //for...in
   for (const x in obj) {
     console.log(`${obj[x]} :${x}`);
@@ -46,8 +47,8 @@ function App() {
 
   // View
   return (
-    <div className="bg-neutral-200 h-screen flex flex-col justify-center">
-      <div className="flex flex-col items-center gap-16 conainer max-w-6xl mx-auto ">
+    <div className="bg-neutral-200 min-h-screen pt-12">
+      <div className="flex flex-col items-center gap-16 conainer max-w-6xl mx-auto">
         <div className="flex flex-col items-center justify-center space-y-3.5">
           <p className="text-5xl text-center max-w-3xl">
             Why we should be greening our homes with plants
@@ -62,7 +63,7 @@ function App() {
         <div className="flex justify-center gap-8">
           {images.map((prop, index) => {
             return (
-              <div className="relative flex justify-center h-fit">
+              <div className="relative flex flex-col items-center h-fit">
                 <img src={prop.src} alt="Solar Panel 1" className="h-72 w-80" />
                 {images.length > 1 && (
                   <button
@@ -72,16 +73,17 @@ function App() {
                     x
                   </button>
                 )}
-
-                <div className="absolute left-auto right-auto -bottom-28 bg-white h-36 w-64 grid place-content-center shadow-md drop-shadow-lg space-y-2">
-                  <h2 className="text-lg font-extrabold text-center">
-                    {prop.name}
-                  </h2>
-                  <button className="bg-orange-500 px-6 py-2 text-white text-sm hover:bg-neutral-800 rounded-lg">
-                    VIEW DETAIL
-                  </button>
+                <div className="absolute -bottom-28 flex flex-col items-center gap-3.5">
+                  <div className="bg-white h-24 w-52 grid place-content-center shadow-md drop-shadow-lg space-y-1.5">
+                    <h2 className="text-lg font-semibold text-center">
+                      {prop.name}
+                    </h2>
+                    <button className="bg-orange-500 px-6 py-2 text-white text-sm hover:bg-neutral-800 rounded-lg">
+                      View details
+                    </button>
+                  </div>
                   <button
-                    className="bg-sky-600 px-14 py-4 text-white text-sm hover:bg-neutral-950 rounded-lg "
+                    className="bg-sky-600 px-6 py-2 text-white text-sm hover:bg-neutral-950 rounded-lg "
                     onClick={() => move(index)}
                   >
                     Move to next
@@ -91,9 +93,6 @@ function App() {
             );
           })}
         </div>
-        <button className="border-2 border-neutral-950 px-14 py-4 text-slate-800 hover:text-white text-sm hover:bg-neutral-950 rounded-lg mt-16">
-          LEARN MORE
-        </button>
       </div>
     </div>
   );
