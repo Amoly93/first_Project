@@ -45,12 +45,11 @@ function App() {
   });
 
   // show
-  const [textPrint, setTextPrint] = useState({text:'',ison: false})
+  const [textPrint, setTextPrint] = useState({ text: "", ison: false });
 
-  
- const  showPrint = (T) =>{
-    setTextPrint({text:T,ison:true});
-  }
+  const showPrint = (T) => {
+    setTextPrint({ text: T, ison: true });
+  };
 
   // View
   return (
@@ -100,7 +99,6 @@ function App() {
                   >
                     Move to next
                   </button>
-
                 </div>
               </div>
             );
@@ -108,20 +106,16 @@ function App() {
         </div>
 
         <div className="flex gap-10 p-32">
-        <p>{textPrint.ison ? textPrint.text : "no print"}</p>
-        {textPrint.ison ===true && (
-                      <button
-                      onClick={() => setTextPrint({text:"no print",ison:false})}
-                      className="bg-red-600 px-6 py-2 text-white text-sm hover:bg-neutral-950 rounded-lg "
-                    >
-                      {" "}
-                      Delete
-                    </button>
-
-        )
-
-        }
-
+          <p>{textPrint.ison ? textPrint.text : "no print"}</p>
+          {textPrint.ison === true && (
+            <button
+              onClick={() => setTextPrint({ text: "no print", ison: false })}
+              className="bg-red-600 px-6 py-2 text-white text-sm hover:bg-neutral-950 rounded-lg "
+            >
+              {" "}
+              Delete
+            </button>
+          )}
         </div>
       </div>
     </div>
