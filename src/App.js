@@ -93,7 +93,8 @@ function App() {
                     </button>
                   </div>
                   <button
-                    className="bg-sky-600 px-6 py-2 text-white text-sm hover:bg-neutral-950 rounded-lg "
+                    disabled={!(images.length > 1)}
+                    className="disabled:bg-gray-400 disabled:cursor-not-allowed bg-sky-600 px-6 py-2 text-white text-sm hover:bg-neutral-950 rounded-lg"
                     onClick={() => move(index)}
                   >
                     Move to next
