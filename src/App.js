@@ -45,11 +45,11 @@ function App() {
   });
 
   // show
-  const [text, setText] = useState("");
-  const [isOn, setIsOn] = useState(false);
+  const [textPrint, setTextPrint] = useState({text:'',ison: false})
+
+  
   function showPrint(T) {
-    setText(T);
-    setIsOn(true);
+    setTextPrint({text:T,ison:true});
   }
 
   // View
@@ -92,6 +92,7 @@ function App() {
                       print details
                     </button>
                   </div>
+
                   <button
                     disabled={!(images.length > 1)}
                     className="disabled:bg-gray-400 disabled:cursor-not-allowed bg-sky-600 px-6 py-2 text-white text-sm hover:bg-neutral-950 rounded-lg"
@@ -99,6 +100,7 @@ function App() {
                   >
                     Move to next
                   </button>
+
                 </div>
               </div>
             );
@@ -106,14 +108,20 @@ function App() {
         </div>
 
         <div className="flex gap-10 p-32">
-          <p>{isOn ? text : "no print"}</p>
-          <button
-            onClick={() => setIsOn(false)}
-            className="bg-red-600 px-6 py-2 text-white text-sm hover:bg-neutral-950 rounded-lg "
-          >
-            {" "}
-            Delete
-          </button>
+        <p>{textPrint.ison ? textPrint.text : "no print"}</p>
+        {textPrint.ison ===true && (
+                      <button
+                      onClick={() => setTextPrint({text:"no print",ison:false})}
+                      className="bg-red-600 px-6 py-2 text-white text-sm hover:bg-neutral-950 rounded-lg "
+                    >
+                      {" "}
+                      Delete
+                    </button>
+
+        )
+
+        }
+
         </div>
       </div>
     </div>
