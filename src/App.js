@@ -28,6 +28,7 @@ function App() {
     newArray.splice(isLastItem ? 0 : index + 1, 0, deletedItem);
     setImages(newArray);
   };
+  
   const obj = {
     Amal: "first_name",
     Bajaber: "last_name",
@@ -39,9 +40,9 @@ function App() {
 
   // forEach
   let details = Object.keys(obj);
-details.forEach((details)=>{
-    console.log( `${obj[details]}: ${details}`)
-})
+  details.forEach((details) => {
+    console.log(`${obj[details]}: ${details}`);
+  });
 
   // View
   return (
@@ -59,7 +60,7 @@ details.forEach((details)=>{
           </p>
         </div>
         <div className="flex justify-center gap-8">
-          {images.map((prop,index) => {
+          {images.map((prop, index) => {
             return (
               <div className="relative flex justify-center h-fit">
                 <img src={prop.src} alt="Solar Panel 1" className="h-72 w-80" />
@@ -83,7 +84,7 @@ details.forEach((details)=>{
                     className="bg-sky-600 px-14 py-4 text-white text-sm hover:bg-neutral-950 rounded-lg "
                     onClick={() => move(index)}
                   >
-                  Move to next
+                    Move to next
                   </button>
                 </div>
               </div>
