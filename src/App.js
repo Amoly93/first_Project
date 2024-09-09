@@ -28,23 +28,6 @@ function App() {
     setImages(newArray);
   };
 
-  const obj = {
-    Amal: "first_name",
-    Bajaber: "last_name",
-  };
-  
-
-  //for...in
-  for (const x in obj) {
-    console.log(`${obj[x]} :${x}`);
-  }
-
-  // forEach
-  let details = Object.keys(obj);
-  details.forEach((details) => {
-    console.log(`${obj[details]}: ${details}`);
-  });
-
   // View
   return (
     <div className="bg-neutral-200 min-h-screen pt-12">
@@ -83,7 +66,8 @@ function App() {
                     </button>
                   </div>
                   <button
-                    className="bg-sky-600 px-6 py-2 text-white text-sm hover:bg-neutral-950 rounded-lg "
+                    disabled={!(images.length > 1)}
+                    className="disabled:bg-gray-400 disabled:cursor-not-allowed bg-sky-600 px-6 py-2 text-white text-sm hover:bg-neutral-950 rounded-lg"
                     onClick={() => move(index)}
                   >
                     Move to next
