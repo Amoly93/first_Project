@@ -47,9 +47,8 @@ function App() {
   // show
   const [textPrint, setTextPrint] = useState({ text: "", ison: false });
 
-  const showPrint = (T) => {
-    setTextPrint({ text: T, ison: true });
-  };
+  const showPrint = (T) => setTextPrint({ text: T, ison: true });
+
 
   // View
   return (
