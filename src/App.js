@@ -28,27 +28,8 @@ function App() {
     setImages(newArray);
   };
 
-  const obj = {
-    Amal: "first_name",
-    Bajaber: "last_name",
-  };
-
-  //for...in
-  for (const x in obj) {
-    console.log(`${obj[x]} :${x}`);
-  }
-
-  // forEach
-  let details = Object.keys(obj);
-  details.forEach((details) => {
-    console.log(`${obj[details]}: ${details}`);
-  });
-
   // show
-  const [textPrint, setTextPrint] = useState({ text: "", ison: false });
-
-  const showPrint = (T) => setTextPrint({ text: T, ison: true });
-
+  const [textPrinted, setTextPrinted] = useState("");
 
   // View
   return (
@@ -85,9 +66,9 @@ function App() {
                     </h2>
                     <button
                       className="bg-orange-500 px-6 py-2 text-white text-sm hover:bg-neutral-800 rounded-lg"
-                      onClick={() => showPrint(prop.name)}
+                      onClick={() => setTextPrinted(prop.name)}
                     >
-                      print details
+                      Print
                     </button>
                   </div>
 
@@ -103,15 +84,13 @@ function App() {
             );
           })}
         </div>
-
-        <div className="flex gap-10 p-32">
-          <p>{textPrint.ison ? textPrint.text : "no print"}</p>
-          {textPrint.ison === true && (
+        <div className="flex items-center gap-5 mt-28">
+          <p>{textPrinted ? textPrinted : "No text printed"}</p>
+          {textPrinted && (
             <button
-              onClick={() => setTextPrint({ text: "no print", ison: false })}
+              onClick={() => setTextPrinted("")}
               className="bg-red-600 px-6 py-2 text-white text-sm hover:bg-neutral-950 rounded-lg "
             >
-              {" "}
               Delete
             </button>
           )}
