@@ -23,21 +23,7 @@ function XO() {
     setItem(newArrayxo);
     setPlayerO((playerO = !playerO));
   };
-  const checkWinner = () => {
-    const element = [...xo];
-    const arraydiv = [...indexOfArrayOX];
-    for (const [a, b, c] of arraydiv) {
-      if (
-        element[a] &&
-        element[a] === element[b] &&
-        element[a] === element[c]
-      ) {
-        return;
-      } else {
-        return "no winner";
-      }
-    }
-  };
+
   const checkWin = () => {
     const squares = [...xo];
     for (let i = 0; i < indexOfArrayOX.length; i++) {
@@ -55,23 +41,22 @@ function XO() {
 
   return (
     <div className="conainer max-w-2xl mx-auto p-20">
-    <h1 className="text-center ">XO Game</h1>
-    <h1 className="text-center">{checkWin()}</h1>
-
-    <div className="bg-indigo-200  grid grid-cols-3 border-solid  border-4 border-white divide-y divide-x divide-indigo-700">
-      {xo.map((x, index) => {
-        return (
-          <button
-            className="h-20 "
-            onClick={() => xoFunc(index)}
-            disabled={!(xo[index] === "")}
-          >
-            <p className="text-6xl text-blue-600 text-center">{x}</p>
-          </button>
-        );
-      })}
+      <h1 className="text-center ">XO Game</h1>
+      <h1 className="text-center">{checkWin()}</h1>
+      <div className="bg-indigo-200  grid grid-cols-3 border-solid  border-4 border-white divide-y divide-x divide-indigo-700">
+        {xo.map((x, index) => {
+          return (
+            <button
+              className="h-20 "
+              onClick={() => xoFunc(index)}
+              disabled={!(xo[index] === "")}
+            >
+              <p className="text-6xl text-blue-600 text-center">{x}</p>
+            </button>
+          );
+        })}
+      </div>
     </div>
-  </div>
   );
 }
 
