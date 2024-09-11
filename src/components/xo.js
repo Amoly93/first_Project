@@ -21,22 +21,20 @@ function XO() {
     const textXo = playerO ? "O" : "X";
     newArrayxo[index] = textXo;
     setItem(newArrayxo);
-    setPlayerO((playerO = !playerO));
+    setPlayerO(!playerO);
   };
 
   const checkWin = () => {
-    const squares = [...xo];
+    const lasPlayer = playerO ? "X" : "O";
     for (let i = 0; i < indexOfArrayOX.length; i++) {
-      const [a, b, c] = indexOfArrayOX[i];
       if (
-        squares[a] &&
-        squares[a] === squares[b] &&
-        squares[a] === squares[c]
+        indexOfArrayOX[i].every((index) => {
+          return xo[index] === lasPlayer;
+        })
       ) {
-        return `winner 🎉 ${squares[a]}`;
+        return `winner 🎉 ${lasPlayer}`;
       }
     }
-    return null;
   };
 
   return (
