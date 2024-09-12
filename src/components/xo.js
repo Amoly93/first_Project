@@ -53,8 +53,8 @@ function XO() {
             <button
               className="h-20   bg-indigo-400 "
               onClick={() => xoFunc(index)}
-              //disabled={!(win === "") }
-           disabled={!(xo[index] === "")}
+            disabled={!(win === "" )|| !(xo[index] === "") }
+          // disabled={!(xo[index] === "")}
             >
               <p className={`text-5xl ${x === "x"? 'text-blue-600': 'text-red-600'}`}  >{x}</p>
             </button>
