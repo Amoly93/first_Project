@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 function XO() {
-  const [item, setItem] = useState(["", "", "", "", "", "", "", "", ""]);
+  const [items, setItems] = useState(["", "", "", "", "", "", "", "", ""]);
 
   const indexOfArrayOX = [
     [0, 1, 2],
@@ -17,67 +17,52 @@ function XO() {
   const [player, setPlayer] = useState("x");
 
   const xoFunc = (index) => {
-    const newArrayxo = [...item];
+    const newArrayxo = [...items];
     newArrayxo[index] = player;
-    setItem(newArrayxo);
-    setPlayer( player === "x"? "o":"x")
+    setItems(newArrayxo);
+    setPlayer(player === "x" ? "o" : "x");
   };
 
- let win;
+  let win;
   const checkWin = () => {
-
     for (let i = 0; i < indexOfArrayOX.length; i++) {
       if (
         indexOfArrayOX[i].every((index) => {
-          console.log(i)
-          return item[index] === player;
+          console.log(i);
+          return items[index] === player;
         })
       ) {
-       win = "Winner"
+        win = "Winner";
         return `Winner  Player ${player} 🎉`;
-      
       }
     }
   };
+
   return (
     <div className="conainer max-w-2xl mx-auto p-20">
       <h1 className="text-center ">XO Game</h1>
-
       <h1 className="text-center">{checkWin()}</h1>
-      <div className=" bg-black-200   grid grid-cols-3 border-solid gap-2  border-4 border-white " >  
-        {item.map((prop, index) => {
+      <div className="bg-black grid grid-cols-3 border-solid border-4 border-white">
+        {items.map((prop, index) => {
           return (
             <button
               className="h-20   bg-white "
               onClick={() => xoFunc(index)}
-            disabled={(win === "Winner" )|| !(item[index] === "") }
+              disabled={win === "Winner" || !(items[index] === "")}
             >
-              <p className={`text-5xl ${prop === "x"? 'text-blue-600': 'text-red-600'}`}  >{prop}</p>
+              <p
+                className={`text-5xl ${
+                  prop === "x" ? "text-blue-600" : "text-red-600"
+                }`}
+              >
+                {prop}
+              </p>
             </button>
           );
         })}
       </div>
-     
-
     </div>
   );
 }
 
 export default XO;
-
-// function panel({title,children,isActive,onShow}){
-//   return (
-//     <section>
-//       <h1>{title}</h1>
-//       {isActive ? (
-//         <p></p>
-//       ) : (
-//         <button onClick={onShow}>
-//          start Game
-//         </button>
-//       )}
-//     </section>
-
-//   )
-
-// }
