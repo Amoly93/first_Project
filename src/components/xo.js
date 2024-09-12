@@ -44,11 +44,11 @@ function XO() {
       <h1 className="text-center ">XO Game</h1>
 
       <h1 className="text-center">{checkWin()}</h1>
-      <div className=" bg-indigo-200   grid grid-cols-3 border-solid gap-2  border-4 border-white " >  
+      <div className=" bg-black-200   grid grid-cols-3 border-solid gap-2  border-4 border-white " >  
         {item.map((prop, index) => {
           return (
             <button
-              className="h-20   bg-indigo-400 "
+              className="h-20   bg-white "
               onClick={() => xoFunc(index)}
             disabled={(win === "Winner" )|| !(item[index] === "") }
             >
