@@ -23,17 +23,17 @@ function XO() {
     setPlayer(player === "x" ? "o" : "x");
   };
 
-  let win;
+
   const checkWin = () => {
     for (let i = 0; i < indexOfArrayOX.length; i++) {
       if (
         indexOfArrayOX[i].every((index) => {
-          console.log(i);
+     
           return items[index] === player;
         })
       ) {
-        win = "Winner";
-        return `Winner  Player ${player} 🎉`;
+  
+        return true;
       }
     }
   };
@@ -41,18 +41,18 @@ function XO() {
   return (
     <div className="conainer max-w-2xl mx-auto p-20">
       <h1 className="text-center ">XO Game</h1>
-      <h1 className="text-center">{checkWin()}</h1>
-      <div className="bg-black grid grid-cols-3 border-solid border-4 border-white">
+      <h1 className="text-center">{checkWin()=== true ? "Winner 🏆":""}</h1>
+      <div className={`bg-black grid grid-cols-3 border-solid border-4 border-white`}>
         {items.map((prop, index) => {
           return (
             <button
-              className="h-20   bg-white "
+              className={`h-20  ${checkWin() === true ? "bg-green-600":"bg-white"} cursor-not-allowed border-2 border-indigo-60` }
               onClick={() => xoFunc(index)}
-              disabled={win === "Winner" || !(items[index] === "")}
+              disabled={checkWin() === true || !(items[index] === "")}
             >
               <p
                 className={`text-5xl ${
-                  prop === "x" ? "text-blue-600" : "text-red-600"
+                   checkWin() === true ?  "text-gray-400" :prop === "x" ? "text-blue-600" : "text-red-600"}
                 }`}
               >
                 {prop}
