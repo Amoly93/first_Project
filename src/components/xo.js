@@ -46,7 +46,7 @@ function XO() {
         {items.map((prop, index) => {
           return (
             <button
-              className={`h-20  ${checkWin() === true ? "bg-green-600":"bg-white"} cursor-not-allowed border-2 border-indigo-60` }
+              className={`h-20  ${checkWin() === true ? "bg-green-600 cursor-not-allowed":"bg-white"}  border-2 border-indigo-60` }
               onClick={() => xoFunc(index)}
               disabled={checkWin() === true || !(items[index] === "")}
             >
