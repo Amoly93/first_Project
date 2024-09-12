@@ -14,25 +14,30 @@ function XO() {
     [2, 5, 8],
   ];
 
-  let [playerO, setPlayerO] = useState(true);
+  let [player, setPlayer] = useState("x");
 
   const xoFunc = (index) => {
     const newArrayxo = [...xo];
-    const textXo = playerO ? "O" : "X";
-    newArrayxo[index] = textXo;
+    newArrayxo[index] = player;
     setItem(newArrayxo);
-    setPlayerO(!playerO);
+    if (player === "x"){
+      setPlayer( "o");
+    }else{
+      setPlayer( "x");
+    }
+  
   };
 
   const checkWin = () => {
-    const lasPlayer = playerO ? "X" : "O";
+
     for (let i = 0; i < indexOfArrayOX.length; i++) {
       if (
         indexOfArrayOX[i].every((index) => {
-          return xo[index] === lasPlayer;
+          return xo[index] === player;
         })
       ) {
-        return `winner 🎉 ${lasPlayer}`;
+        
+        return `Winner  Player ${player} 🎉`;
       }
     }
   };
@@ -41,15 +46,16 @@ function XO() {
     <div className="conainer max-w-2xl mx-auto p-20">
       <h1 className="text-center ">XO Game</h1>
       <h1 className="text-center">{checkWin()}</h1>
-      <div className="bg-indigo-200  grid grid-cols-3 border-solid  border-4 border-white divide-y divide-x divide-indigo-700">
+      <div className=" bg-indigo-200   grid grid-cols-3 border-solid gap-2  border-4 border-white " >  
         {xo.map((x, index) => {
           return (
             <button
-              className="h-20 "
+              className="h-20   bg-indigo-400 "
               onClick={() => xoFunc(index)}
-              disabled={!(xo[index] === "")}
+              // disabled={(textWinner.startsWith('Winner') ) }
+               disabled={!(xo[index] === "")}
             >
-              <p className="text-6xl text-blue-600 text-center">{x}</p>
+              <p className={`text-5xl ${x === "x"? 'text-blue-600': 'text-red-600'}`}  >{x}</p>
             </button>
           );
         })}
