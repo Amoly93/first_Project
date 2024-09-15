@@ -22,37 +22,43 @@ function XO() {
     setItems(newArrayxo);
     setPlayer(player === "x" ? "o" : "x");
   };
-
+  const [isWin, setIsWin] = useState(false);
 
   const checkWin = () => {
-    for (let i = 0; i < indexOfArrayOX.length; i++) {
-      if (
-        indexOfArrayOX[i].every((index) => {
-     
-          return items[index] === player;
-        })
-      ) {
-  
-        return true;
-      }
+    if (!isWin) {
+      indexOfArrayOX.forEach((indexArray) => {
+        if (indexArray.every((index) => items[index] === player)) {
+          setIsWin(true);
+        }
+      });
     }
   };
 
+  console.log(checkWin());
   return (
     <div className="conainer max-w-2xl mx-auto p-20">
       <h1 className="text-center ">XO Game</h1>
-      <h1 className="text-center">{checkWin()=== true ? "Winner 🏆":""}</h1>
-      <div className={`bg-black grid grid-cols-3 border-solid border-4 border-white`}>
+      <h1 className="text-center">{isWin === true ? "Winner 🏆" : ""}</h1>
+      <div
+        className={`bg-black grid grid-cols-3 border-solid border-4 border-white`}
+      >
         {items.map((prop, index) => {
           return (
             <button
-              className={`h-20  ${checkWin() === true ? "bg-green-600 cursor-not-allowed":"bg-white"}  border-2 border-indigo-60` }
+              className={`h-20  ${
+                isWin === true ? "bg-green-600 cursor-not-allowed" : "bg-white"
+              }  border-2 border-indigo-60`}
               onClick={() => xoFunc(index)}
-              disabled={checkWin() === true || !(items[index] === "")}
+              disabled={isWin === true || !(items[index] === "")}
             >
               <p
                 className={`text-5xl ${
-                   checkWin() === true ?  "text-gray-400" :prop === "x" ? "text-blue-600" : "text-red-600"}
+                  isWin === true
+                    ? "text-gray-400"
+                    : prop === "x"
+                    ? "text-blue-600"
+                    : "text-red-600"
+                }
                 }`}
               >
                 {prop}
