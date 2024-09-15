@@ -38,7 +38,7 @@ function XO() {
   return (
     <div className="conainer max-w-2xl mx-auto p-20">
       <h1 className="text-center ">XO Game</h1>
-      <h1 className="text-center">{isWin === true ? "Winner 🏆" : ""}</h1>
+      <h1 className="text-center">{isWin === true ? `Winner Player ${player}🏆` : ""}</h1>
       <div
         className={`bg-black grid grid-cols-3 border-solid border-4 border-white`}
       >
