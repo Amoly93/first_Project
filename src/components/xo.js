@@ -20,14 +20,15 @@ function XO() {
     const newArrayxo = [...items];
     newArrayxo[index] = player;
     setItems(newArrayxo);
-checkWin(newArrayxo)
+    checkWin(newArrayxo);
     setPlayer(player === "x" ? "o" : "x");
   };
+
   const [isWin, setIsWin] = useState(false);
 
-  const checkWin = (item) => {
+  const checkWin = (items) => {
     indexOfArrayOX.forEach((indexArray) => {
-      if (indexArray.every((index) => item[index] === player)) {
+      if (indexArray.every((index) => items[index] === player)) {
         setIsWin(true);
       }
     });
