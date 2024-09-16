@@ -96,8 +96,8 @@ function App() {
             </button>
           )}
         </div>
+        <XO />
       </div>
-      <XO />
     </div>
   );
 }

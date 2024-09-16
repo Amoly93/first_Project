@@ -1,10 +1,12 @@
 import { useState, useMemo } from "react";
 
+const x = "X";
+const o = "O";
+
 function XO() {
   const [items, setItems] = useState(["", "", "", "", "", "", "", "", ""]);
-  const [player, setPlayer] = useState("X");
-  const [isWin, setIsWin] = useState(false);
-
+  const [player, setPlayer] = useState(x);
+  const [Winner, setWinner] = useState(false);
   const indexOfArrayOX = [
     [0, 1, 2],
     [3, 4, 5],
@@ -16,47 +18,68 @@ function XO() {
     [2, 5, 8],
   ];
 
+  const lastPlayer = player === x ? o : x;
+  let hasWinner = false;
   const checkWinner = useMemo(() => {
-    return (newItems) => {
-      indexOfArrayOX.forEach((indexArray) => {
-        if (indexArray.every((index) => newItems[index] === player)) {
-          setIsWin(true);
-        }
-      });
-      return isWin;
-    };
+    indexOfArrayOX.forEach((indexArray) => {
+      if (indexArray.every((index) => items[index] === lastPlayer)) {
+        setWinner(true);
+      }
+    });
   }, [player]);
 
   const xoFunc = (index) => {
     const newItems = [...items];
     newItems[index] = player;
     setItems(newItems);
-    checkWinner(newItems);
-    setPlayer(player === "X" ? "O" : "X");
+    setPlayer(player === x ? o : x);
+  };
+  const reset = () => {
+    setItems(["", "", "", "", "", "", "", "", ""]);
+    setWinner(false);
   };
   return (
-    <div className="container max-w-2xl mx-auto p-20">
-      <h1 className="text-center">XO Game</h1>
-      <h1 className="text-center">
-        {isWin ? `Winner Player ${player === "X" ? "O" : "X"}🏆` : ""}
-      </h1>
-      <div className="bg-black grid grid-cols-3">
+    <div className="container max-w-2xl mx-auto space-y-3">
+      <div>
+        <h1 className="text-center">XO Game</h1>
+        <div className="p-10 flex justify-center flex-row gap-20">
+          {Winner && (
+            <h1 className="text-center">Winner is Player {lastPlayer} 🏆</h1>
+          )}
+          <button className="" onClick={reset}>
+            {" "}
+            Restart Game ↩︎{" "}
+          </button>
+        </div>
+      </div>
+      <div className="grid grid-cols-3 px-24">
         {items.map((prop, index) => (
           <button
             key={index}
-            className={`h-20 ${
-              isWin ? "bg-green-600 cursor-not-allowed" : "bg-white"
-            } border-2 border-neutral-200`}
+            className={`h-20  group/item    ${
+              Winner
+                ? "bg-green-300 cursor-not-allowed "
+                : "bg-white hover:bg-gray-400"
+            } border-2 border-neutral-200  `}
             onClick={() => xoFunc(index)}
-            disabled={isWin || items[index] !== ""}
+            disabled={Winner || items[index]}
           >
+            {/* <label> <input placeholder={`${player}`}></input> </label> */}
+            {prop === "" && (
+              <span
+                className={`text-4xl text-transparent group-hover/item:text-white  `}
+              >
+                {player}
+              </span>
+            )}
+
             <h1
-              className={`text-5xl ${
-                isWin
+              className={` text-4xl ${
+                checkWinner
                   ? "text-gray-400"
-                  : prop === "X"
-                  ? "text-blue-600"
-                  : "text-red-600"
+                  : prop === x
+                  ? "text-blue-600 hover:text-white"
+                  : "text-red-600 hover:text-white"
               }`}
             >
               {prop}
