@@ -1,9 +1,11 @@
 import { useState, useMemo } from "react";
 
+const x = "X";
+const o = "O";
+
 function XO() {
   const [items, setItems] = useState(["", "", "", "", "", "", "", "", ""]);
-  const [player, setPlayer] = useState("X");
-  const [isWin, setIsWin] = useState(false);
+  const [player, setPlayer] = useState(x);
 
   const indexOfArrayOX = [
     [0, 1, 2],
@@ -16,45 +18,50 @@ function XO() {
     [2, 5, 8],
   ];
 
+  const lastPlayer = player === x ? o : x;
+
   const checkWinner = useMemo(() => {
-    return (newItems) => {
+    let hasWinner = false;
+    if (!hasWinner) {
       indexOfArrayOX.forEach((indexArray) => {
-        if (indexArray.every((index) => newItems[index] === player)) {
-          setIsWin(true);
+        if (indexArray.every((index) => items[index] === lastPlayer)) {
+          hasWinner = true;
         }
       });
-      return isWin;
-    };
+    }
+    return hasWinner;
   }, [player]);
 
   const xoFunc = (index) => {
     const newItems = [...items];
     newItems[index] = player;
     setItems(newItems);
-    checkWinner(newItems);
-    setPlayer(player === "X" ? "O" : "X");
+    setPlayer(player === x ? o : x);
   };
+
   return (
-    <div className="container max-w-2xl mx-auto p-20">
-      <h1 className="text-center">XO Game</h1>
-      <h1 className="text-center">
-        {isWin ? `Winner Player ${player === "X" ? "O" : "X"}🏆` : ""}
-      </h1>
-      <div className="bg-black grid grid-cols-3">
+    <div className="container max-w-2xl mx-auto space-y-3">
+      <div>
+        <h1 className="text-center">XO Game</h1>
+        {checkWinner && (
+          <h1 className="text-center">Winner is Player {lastPlayer} 🏆</h1>
+        )}
+      </div>
+      <div className="grid grid-cols-3 px-24">
         {items.map((prop, index) => (
           <button
             key={index}
             className={`h-20 ${
-              isWin ? "bg-green-600 cursor-not-allowed" : "bg-white"
+              checkWinner ? "bg-green-300 cursor-not-allowed" : "bg-white"
             } border-2 border-neutral-200`}
             onClick={() => xoFunc(index)}
-            disabled={isWin || items[index] !== ""}
+            disabled={checkWinner || items[index]}
           >
             <h1
-              className={`text-5xl ${
-                isWin
+              className={`text-4xl ${
+                checkWinner
                   ? "text-gray-400"
-                  : prop === "X"
+                  : prop === x
                   ? "text-blue-600"
                   : "text-red-600"
               }`}

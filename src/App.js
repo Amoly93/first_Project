@@ -34,7 +34,7 @@ function App() {
 
   // View
   return (
-    <div className="bg-neutral-200 min-h-screen pt-12">
+    <div className="bg-neutral-200 min-h-screen py-12">
       <div className="flex flex-col items-center gap-16 conainer max-w-6xl mx-auto">
         <div className="flex flex-col items-center justify-center space-y-3.5">
           <p className="text-5xl text-center max-w-3xl">
@@ -96,8 +96,8 @@ function App() {
             </button>
           )}
         </div>
+        <XO />
       </div>
-      <XO />
     </div>
   );
 }
