@@ -6,7 +6,7 @@ function XOCell({ player, items, item, index, xoFunc, checkWinner }) {
   const [isHovered, setIsHovered] = useState(false);
 
   const isX = item === x;
-
+  
   return (
     <button
       className={clsx(
