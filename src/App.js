@@ -1,6 +1,7 @@
 import "./App.css";
 import { useState } from "react";
 import XO from "./components/xo";
+import UserInfo from "./components/User-Info";
 
 function App() {
   //Array
@@ -97,6 +98,7 @@ function App() {
           )}
         </div>
         <XO />
+        <UserInfo/>
       </div>
     </div>
   );
