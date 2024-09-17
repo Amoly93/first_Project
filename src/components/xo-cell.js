@@ -4,7 +4,6 @@ import { useState } from "react";
 
 function XOCell({ player, items, item, index, xoFunc, checkWinner }) {
   const [isHovered, setIsHovered] = useState(false);
-  console.log(isHovered);
 
   const isX = item === x;
 
