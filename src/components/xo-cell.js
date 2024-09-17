@@ -25,7 +25,11 @@ function XOCell({ player, items, item, index, xoFunc, checkWinner }) {
       <h1
         className={clsx(
           "text-4xl",
-          isHovered ? "text-gray-400" : isX ? "text-blue-600" : "text-red-600",
+          isHovered || checkWinner
+            ? "text-gray-400"
+            : isX
+            ? "text-blue-600"
+            : "text-red-600"
         )}
       >
         {isHovered ? player : item}
