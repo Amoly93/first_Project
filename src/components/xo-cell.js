@@ -13,7 +13,7 @@ function XOCell({ player, items, item, index, xoFunc, checkWinner }) {
         "h-20 border-2 border-neutral-200",
         checkWinner
           ? "bg-green-300 cursor-not-allowed"
-          : `bg-white ${isHovered ? "hover:bg-green-300" : ""}`
+          : `bg-white ${isHovered ? "hover:bg-gray-300" : ""}`
       )}
       onClick={() => {
         clsx(xoFunc(index), setIsHovered(false));
@@ -26,7 +26,7 @@ function XOCell({ player, items, item, index, xoFunc, checkWinner }) {
         className={clsx(
           "text-4xl",
           isX ? "text-blue-600" : "text-red-600",
-          isHovered && "hover:text-gray-300"
+          isHovered && "hover:text-gray-600"
         )}
       >
         {isHovered ? player : item}
