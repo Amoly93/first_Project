@@ -39,7 +39,7 @@ function XO() {
     const newItems = [...items];
     newItems[index] = player;
     setItems(newItems);
-    setPlayer(player === x ? o : x);
+    setPlayer(lastPlayer);
   };
 
   return (
@@ -58,13 +58,13 @@ function XO() {
       <div className="grid grid-cols-3 px-24">
         {items.map((item, index) => (
           <XOCell
-            player={player}
             items={items}
             item={item}
             index={index}
             xoFunc={xoFunc}
             checkWinner={checkWinner}
             key={index}
+            player={player}
           />
         ))}
       </div>
