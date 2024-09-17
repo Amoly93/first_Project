@@ -43,10 +43,10 @@ function XO() {
   };
 
   return (
-    <div className="container max-w-2xl mx-auto space-y-3">
-      <div>
+    <div className="container max-w-2xl mx-auto space-y-4">
+      <div className="space-y-2.5">
         <h1 className="text-center">XO Game</h1>
-        <div className="p-10 flex justify-center flex-row gap-20">
+        <div className="flex justify-center flex-row gap-2.5">
           {checkWinner && (
             <h1 className="text-center">Winner is Player {lastPlayer} 🏆</h1>
           )}
