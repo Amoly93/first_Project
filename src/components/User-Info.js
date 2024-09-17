@@ -5,13 +5,9 @@ function UserInfo() {
 
   return (
     <div className="">
-
-      <form  className="space-x-5">
-        <label className="" >Name:</label>
-        <input
-          name="Name"
-          onChange={(e) => setMyName(e.target.value)}
-        ></input>
+      <form className="space-x-5">
+        <label className="">Name:</label>
+        <input name="Name" onChange={(e) => setMyName(e.target.value)}></input>
       </form>
       <p className="text-green-800 text-2xl text-center"> {myName}</p>
     </div>
