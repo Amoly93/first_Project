@@ -14,6 +14,7 @@ function UserInfo() {
       const newArray = [...userList];
       newArray.splice(editIndex, 1, name);
       setUserList(newArray);
+      setIsEdit(false);
     } else {
       userList.push(name);
       setErrors("");
@@ -34,16 +35,17 @@ function UserInfo() {
   return (
     <div>
       <form
-        className="flex justify-between flex-row gap-20 p-5"
+        className="flex justify-between flex-row gap-20  p-5"
         onSubmit={addFunction}
       >
-        <div className="flex gap-2 p-2">
-          <label className="text-sky-600">Name:</label>
+  
+        <div className="">
+          <label className="">Name:</label>
           <div className="flex flex-col ">
             <input
               className={clsx(
-                " outline-none ring-2  h-7",
-                errors === "" ? "focus:ring-green-500" : "ring-red-500"
+                " h-8",
+                errors && " outline-none ring-2 ring-red-500"
               )}
               type="text"
               value={name}
@@ -54,14 +56,14 @@ function UserInfo() {
         </div>
 
         <button
-          className="rounded-md border-2 border-amber-500 h-8 w-8 m-1.5"
+          className="bg-orange-500 px-6 text-white text-sm hover:bg-neutral-800 rounded-lg h-10 mt-5 "
           type="submit"
         >
-          {isEdit ? "edit " : "+"}
+          {isEdit ? "Update" : "Add"}
         </button>
       </form>
 
-      <p className="text-center underline font-semibold ">Users</p>
+      <p className="font-semibold ">{userList.length ? "Users" : "No users added yet"}</p>
       <div className="divide-y divide-white">
         {userList.map((user, index) => (
           <div className="flex justify-between flex-row px-5 py-2">
