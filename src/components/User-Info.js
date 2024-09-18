@@ -26,12 +26,12 @@ function UserInfo() {
         className="flex justify-between flex-row gap-20 p-5"
         onSubmit={addFunction}
       >
-        <div className="flex gap-2">
-          <label>Name:</label>
+        <div className="flex gap-2 p-2">
+          <label className="text-sky-600">Name:</label>
           <div className="flex flex-col ">
             <input
               className={clsx(
-                " top-0 outline-none ring-2",
+                " outline-none ring-2 ring-sky-600 h-7",
                 errors === "" ? "focus:ring-green-500" : " ring-red-500"
               )}
               type="text"
@@ -43,20 +43,23 @@ function UserInfo() {
         </div>
 
         <button
-          className="rounded-md border-2 border-indigo-600 h-8 "
+          className="rounded-md border-2 border-amber-500 h-8 w-8 m-1.5"
           type="submit"
         >
-          Add
+          +
         </button>
       </form>
 
-      <p className="text-center ">Users</p>
-      {userList.map((user, index) => (
-        <div className="flex justify-between flex-row ">
-          <p className="text-center text-green-800">{user}</p>{" "}
-          <button onClick={() => deleteFunc(index)}>✖︎</button>
-        </div>
-      ))}
+      <p className="text-center underline font-semibold ">Users</p>
+      <div className="divide-y divide-white">
+   
+        {userList.map((user, index) => (
+          <div className="flex justify-between flex-row px-5 py-2">
+            <p className="text-center text-green-800">{user}</p>{" "}
+            <button onClick={() => deleteFunc(index)}>✖︎</button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
