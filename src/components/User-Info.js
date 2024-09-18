@@ -38,7 +38,6 @@ function UserInfo() {
         className="flex justify-between flex-row gap-20  p-5"
         onSubmit={addFunction}
       >
-  
         <div className="">
           <label className="">Name:</label>
           <div className="flex flex-col ">
@@ -63,7 +62,9 @@ function UserInfo() {
         </button>
       </form>
 
-      <p className="font-semibold ">{userList.length ? "Users" : "No users added yet"}</p>
+      <p className="font-semibold ">
+        {userList.length ? "Users" : "No users added yet"}
+      </p>
       <div className="divide-y divide-white">
         {userList.map((user, index) => (
           <div className="flex justify-between flex-row px-5 py-2">
