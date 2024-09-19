@@ -1,17 +1,14 @@
-import { useState, useEffect } from "react";
 import clsx from "clsx";
+import { useState, useEffect } from "react";
 
 function UserInfo() {
   const [name, setName] = useState("");
   const [usersList, setUsersList] = useState([]);
   const [errors, setErrors] = useState("");
   const [isEdit, setIsEdit] = useState(false);
-  const [setPlayer, isetPlayer] = useState(Array(2));
-  const [setPlayer1, isetPlayer1] = useState("");
-  const [setPlayer2, isetPlayer2] = useState("");
+  const [players, setPlayers] = useState([]);
 
-  const addFunction = (e) => {
-    e.preventDefault();
+  const addFunction = () => {
     if (!name) {
       setErrors("This feild is required");
     } else if (isEdit) {
@@ -20,18 +17,27 @@ function UserInfo() {
       newArray.splice(getUserIndex, 1, name);
       setUsersList(newArray);
       setIsEdit(false);
+      setName("");
     } else if (usersList.includes(name)) {
       setErrors("User already added.");
     } else {
       usersList.push(name);
+      setName("");
     }
-    setName("");
   };
 
   const onDelete = (index) => {
     const newArray = [...usersList];
     newArray.splice(index, 1);
     setUsersList(newArray);
+    if (players.includes(usersList[index])) {
+      const playerIndex = players.findIndex(
+        (props) => props === usersList[index]
+      );
+      const newPlayerArray = [...players];
+      newPlayerArray.splice(playerIndex, 1);
+      setPlayers(newPlayerArray);
+    }
   };
 
   const onUpdate = (user) => {
@@ -39,32 +45,19 @@ function UserInfo() {
     setName(user);
   };
 
-  //   useEffect(() => {
+  useEffect(() => {
+    if (!!name) setErrors("");
+  }, [name]);
 
-  // setErrors("");
-
-  //   }, [name]);
-
-  const setPlayers = (user) => {
-    const newPlayerArray = [...setPlayer];
-
-    if (!setPlayer[0]) {
-      newPlayerArray[0] = user;
-      isetPlayer1(user);
-    } else if (!setPlayer[1]) {
-      newPlayerArray[1] = user;
-      isetPlayer2(user);
-    }
-    isetPlayer(newPlayerArray);
+  const onSetPlayer = (user) => {
+    const array = [...players];
+    array.push(user);
+    setPlayers(array);
   };
-
 
   return (
     <div className="space-y-8">
-      <form
-        className="flex justify-between items-end gap-5"
-        onSubmit={addFunction}
-      >
+      <div className="flex justify-between items-end gap-5">
         <div className="space-y-1">
           <label>Name:</label>
           <div className="flex flex-col gap-1">
@@ -80,39 +73,49 @@ function UserInfo() {
           </div>
         </div>
         <button
-          className="bg-orange-500 px-6 text-white text-sm hover:bg-neutral-800 rounded-md h-10"
+          onClick={addFunction}
+          className={clsx(
+            "bg-orange-500 px-6 text-white text-sm hover:bg-neutral-800 rounded-md h-10",
+            errors && "mb-5"
+          )}
           type="submit"
         >
           {isEdit ? "Update" : "Add"}
         </button>
-      </form>
-      <div>
+      </div>
+      <div className="space-y-2.5">
         <p className="font-semibold text-center">
           {usersList.length ? "Users" : "No users added yet"}
         </p>
         <div className="divide-y divide-white">
-          {usersList.map((user, index) => (
-            <div className="flex justify-between flex-row px-5 py-2">
-              <p className="text-center text-green-800">{user}</p>
-              <div className="space-x-3.5">
-                {
-                  <p className="text-center text-green-800">
-                    {clsx(
-                      user === setPlayer1 ? "Player one" : "",
-                      user === setPlayer2 ? "Player Two" : ""
-                    )}
-                  </p>
-                }
-                {/* {!setPlayer.length === 2 && <button onClick={() => setPlayers(user)}>set Player</button>} */}
-                {setPlayer.includes(undefined) && (
-                  <button onClick={() => setPlayers(user)}>set Player</button>
-                )}
+          {usersList.map((user, index) => {
+            const playerIndex = players.findIndex((props) => props === user);
 
-                <button onClick={() => onUpdate(user)}>✎</button>
-                {!isEdit && <button onClick={() => onDelete(index)}>✖︎</button>}
+            return (
+              <div className="flex justify-between flex-row px-5 py-2">
+                <p className="text-center text-green-800">{user}</p>
+                <div className="flex gap-3.5">
+                  <button
+                    disabled={playerIndex !== -1 || players.length === 2}
+                    onClick={() => onSetPlayer(user)}
+                    className={clsx(
+                      playerIndex === -1 && players.length === 2
+                        ? "cursor-not-allowed text-gray-500"
+                        : ""
+                    )}
+                  >
+                    {playerIndex !== -1
+                      ? `Player ${playerIndex + 1}`
+                      : "Set as Player"}
+                  </button>
+                  <button onClick={() => onUpdate(user)}>✎</button>
+                  {!isEdit && (
+                    <button onClick={() => onDelete(index)}>✖︎</button>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>
