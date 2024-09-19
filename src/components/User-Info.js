@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import clsx from "clsx";
 
 function UserInfo() {
@@ -17,10 +17,10 @@ function UserInfo() {
       newArray.splice(getUserIndex, 1, name);
       setUsersList(newArray);
       setIsEdit(false);
-      setErrors("");
+ 
     } else {
       usersList.push(name);
-      setErrors("");
+ ;
     }
     setName("");
   };
@@ -35,6 +35,12 @@ function UserInfo() {
     setIsEdit(true);
     setName(user);
   };
+
+  useEffect(() => {
+setErrors("");
+  }, [name]);
+
+
 
   return (
     <div className="space-y-8">
