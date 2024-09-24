@@ -1,5 +1,5 @@
-import { useState, useMemo } from "react";
 import XOCell from "./xo-cell";
+import { useState, useMemo } from "react";
 
 export const x = "X";
 export const o = "O";
