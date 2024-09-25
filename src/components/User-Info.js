@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { useState, useEffect } from "react";
 
-function UserInfo({ players, setPlayers }) {
+function UserInfo({ players, setPlayers ,gameStart}) {
   const [usersList, setUsersList] = useState([]);
   const [name, setName] = useState("");
   const [errors, setErrors] = useState("");
@@ -49,19 +49,21 @@ function UserInfo({ players, setPlayers }) {
   };
 
   const playerStatus = (user, index) => {
+  
     const array = [...players];
+  
     if (array.includes(user)) {
-      const playerIndex = players.findIndex(
-        (props) => props === usersList[index]
-      );
-
+      const playerIndex = players.findIndex((props) => props === user);
+  
       array.splice(playerIndex, 1);
-      setPlayers(array);
     } else {
       array.push(user);
-      setPlayers(array);
     }
+  
+    setPlayers(array);
   };
+  
+
 
   return (
     <div className="space-y-8">
@@ -134,8 +136,8 @@ function UserInfo({ players, setPlayers }) {
 export default UserInfo;
 
 const getPlayerLabel = (players, playerIndex) => {
-  if (playerIndex === -1 && players.length === 2) return "";
-
+  if (playerIndex === -1 && players.length === 2 ) return "";
+  if (gameStart) return "";
   if (playerIndex === -1) return "Set as a Player";
   else return `Unset Player ${playerIndex + 1}`;
 };

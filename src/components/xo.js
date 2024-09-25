@@ -18,7 +18,7 @@ const winningCases = [
   [2, 5, 8],
 ];
 
-function XO({ players }) {
+function XO({ players ,setgameStart}) {
   const [items, setItems] = useState(defaultItems);
   const [player, setPlayer] = useState(x);
 
@@ -41,6 +41,7 @@ function XO({ players }) {
     newItems[index] = player;
     setItems(newItems);
     setPlayer(lastPlayer);
+setgameStart(true)
   };
 
   const restartButton = () =>{

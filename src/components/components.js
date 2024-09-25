@@ -4,11 +4,11 @@ import UserInfo from "./user-info";
 
 function Components() {
   const [players, setPlayers] = useState([]);
-
+const [gameStart,setgameStart] = useState(false)
   return (
     <>
-      <UserInfo players={players} setPlayers={setPlayers} />
-      <XO players={players} />
+      <UserInfo players={players} setPlayers={setPlayers} gameStart={gameStart} />
+      <XO players={players} setgameStart={setgameStart}  />
     </>
   );
 }
