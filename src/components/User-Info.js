@@ -29,7 +29,6 @@ function UserInfo({ players, setPlayers }) {
     if (!!name) setErrors("");
   }, [name]);
 
-
   const onUpdate = (user) => {
     setIsEdit(true);
     setName(user);
@@ -49,7 +48,7 @@ function UserInfo({ players, setPlayers }) {
     }
   };
 
-  const playerStatus = (user,index) => {
+  const playerStatus = (user, index) => {
     const array = [...players];
     if (array.includes(user)) {
       const playerIndex = players.findIndex(
@@ -64,21 +63,19 @@ function UserInfo({ players, setPlayers }) {
     }
   };
 
-
   return (
     <div className="space-y-8">
-      <div className="flex justify-between items-end gap-5">
-        <div className="space-y-1">
+      <div className="flex justify-between items-end gap-5 w-80">
+        <div className="space-y-1 w-full">
           <label>Name:</label>
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-1 w-full">
             <input
               className={clsx(
                 "h-10 px-1.5 rounded-md",
                 errors && "outline-none ring-2 ring-red-500"
               )}
               value={name}
-              onChange={(e) => 
-                setName(e.target.value)}
+              onChange={(e) => setName(e.target.value)}
             />
             {errors && <span className="text-red-600 text-xs">{errors}</span>}
           </div>
@@ -94,26 +91,19 @@ function UserInfo({ players, setPlayers }) {
           {isEdit ? "Update" : "Add"}
         </button>
       </div>
-      <div className="space-y-2.5">
+      <div className="space-y-2.5 w-80">
         <p className="font-semibold text-center">
           {usersList.length ? "Users" : "No users added yet"}
         </p>
         <div className="divide-y divide-white">
           {usersList.map((user, index) => {
             const playerIndex = players.findIndex((props) => props === user);
-            const playerLabel = playerIndex === -1 && players.length === 2 ?"":
-              playerIndex !== -1  ? `Unset Player ${playerIndex + 1}`
-              : "Set as a Player"
-            
-            
-         
-
             return (
-              <div className="flex justify-between flex-row px-5 py-2">
-                <p className="text-center text-green-800">{user}</p>
+              <div className="flex justify-between py-2">
+                <p className="text-green-800 truncate w-36">{user}</p>
                 <div className="flex gap-3.5">
                   <button
-                      disabled={playerIndex === -1 && players.length === 2}
+                    disabled={playerIndex === -1 && players.length === 2}
                     onClick={() => playerStatus(user)}
                     className={clsx(
                       playerIndex === -1 && players.length === 2
@@ -121,7 +111,7 @@ function UserInfo({ players, setPlayers }) {
                         : ""
                     )}
                   >
-                    {playerLabel}
+                    {getPlayerLabel(players, playerIndex)}
                   </button>
                   {playerIndex === -1 && (
                     <div className="flex gap-3.5">
@@ -143,3 +133,9 @@ function UserInfo({ players, setPlayers }) {
 
 export default UserInfo;
 
+const getPlayerLabel = (players, playerIndex) => {
+  if (playerIndex === -1 && players.length === 2) return "";
+
+  if (playerIndex === -1) return "Set as a Player";
+  else return `Unset Player ${playerIndex + 1}`;
+};
