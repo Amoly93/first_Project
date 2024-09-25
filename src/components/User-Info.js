@@ -1,13 +1,62 @@
 import clsx from "clsx";
 import { useState, useEffect } from "react";
 
-function UserInfo({players ,onDelete,onSetPlayer,usersList,addFunction,errors,isEdit,name,onUpdate,setNameFuncation}) {
+function UserInfo({ players, setPlayers }) {
+  const [usersList, setUsersList] = useState([]);
+  const [name, setName] = useState("");
+  const [errors, setErrors] = useState("");
+  const [isEdit, setIsEdit] = useState(false);
 
+  const addFunction = () => {
+    if (!name) {
+      setErrors("This feild is required");
+    } else if (isEdit) {
+      const newArray = [...usersList];
+      const getUserIndex = usersList.findIndex((props) => props === name);
+      newArray.splice(getUserIndex, 1, name);
+      setUsersList(newArray);
+      setIsEdit(false);
+      setName("");
+    } else if (usersList.includes(name)) {
+      setErrors("User already added.");
+    } else {
+      usersList.push(name);
+      setName("");
+    }
+  };
 
+  useEffect(() => {
+    if (!!name) setErrors("");
+  }, [name]);
 
+  const setNameFuncation = (e) => {
+    setName(e.target.value);
+  };
 
+  const onUpdate = (user) => {
+    setIsEdit(true);
+    setName(user);
+  };
 
+  const onDelete = (index) => {
+    const newArray = [...usersList];
+    newArray.splice(index, 1);
+    setUsersList(newArray);
+    if (players.includes(usersList[index])) {
+      const playerIndex = players.findIndex(
+        (props) => props === usersList[index]
+      );
+      const newPlayerArray = [...players];
+      newPlayerArray.splice(playerIndex, 1);
+      setPlayers(newPlayerArray);
+    }
+  };
 
+  const onSetPlayer = (user) => {
+    const array = [...players];
+    array.push(user);
+    setPlayers(array);
+  };
 
   return (
     <div className="space-y-8">
