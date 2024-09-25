@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import XOCell from "./xo-cell";
 import { useState, useMemo } from "react";
 
@@ -17,7 +18,7 @@ const winningCases = [
   [2, 5, 8],
 ];
 
-function XO() {
+function XO({ players }) {
   const [items, setItems] = useState(defaultItems);
   const [player, setPlayer] = useState(x);
 
@@ -48,14 +49,24 @@ function XO() {
         <h1 className="text-center">XO Game</h1>
         <div className="flex justify-center flex-row gap-2.5">
           {checkWinner && (
-            <h1 className="text-center">Winner is Player {lastPlayer} 🏆</h1>
+            <h1 className="text-center">
+              Winner is Player {player === x ? players[0] : players[1]} 🏆
+            </h1>
           )}
           <button onClick={() => setItems(defaultItems)}>
             Restart Game ↩︎
           </button>
         </div>
+        <p>{players.length}</p>
+
+        <div className="flex justify-center flex-row gap-10">
+          {/* <p>{ !item ? "--": item[0]}</p> */}
+          <p>👤 player X is {players[0]}</p>
+          <p>👤 player O is {players[1]}</p>
+        </div>
       </div>
-      <div className="grid grid-cols-3 px-24">
+
+      <div className={clsx("grid grid-cols-3 px-24")}>
         {items.map((item, index) => (
           <XOCell
             items={items}
@@ -65,6 +76,7 @@ function XO() {
             checkWinner={checkWinner}
             key={index}
             player={player}
+            playersLength={players.length}
           />
         ))}
       </div>
