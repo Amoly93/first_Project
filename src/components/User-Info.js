@@ -1,12 +1,12 @@
 import clsx from "clsx";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 
 function UserInfo({ players, setPlayers }) {
   const [usersList, setUsersList] = useState([]);
   const [name, setName] = useState("");
   const [errors, setErrors] = useState("");
   const [isEdit, setIsEdit] = useState(false);
-  const [isUnsetPlayer, setisUnsetPlayer] = useState(false);
+
   const addFunction = () => {
     if (!name) {
       setErrors("This feild is required");
@@ -51,7 +51,6 @@ function UserInfo({ players, setPlayers }) {
       setPlayers(newPlayerArray);
     }
   };
-
 
   const playerStatus = (user) => {
     setPlayers((prev) => {
@@ -98,30 +97,27 @@ function UserInfo({ players, setPlayers }) {
         <div className="divide-y divide-white">
           {usersList.map((user, index) => {
             const playerIndex = players.findIndex((props) => props === user);
+            const playerLabel =
+              playerIndex !== -1
+                ? `Unset Player ${playerIndex + 1}`
+                : "Set as a Player";
 
             return (
               <div className="flex justify-between flex-row px-5 py-2">
                 <p className="text-center text-green-800">{user}</p>
                 <div className="flex gap-3.5">
                   <button
-                    //disabled={playerIndex !== -1 || players.length === 2}
                     onClick={() => playerStatus(user)}
-                    // onChange={() => (playerIndex !== -1 ? onUnsetPlayer(user) : onSetPlayer(user))}
-                    //  onClick={() => (playerIndex !== -1 ? onUnsetPlayer(user) : onSetPlayer(user))}
                     className={clsx(
                       playerIndex === -1 && players.length === 2
                         ? "cursor-not-allowed text-gray-500"
                         : ""
                     )}
                   >
-                    {playerIndex !== -1
-                      ? `UnSet Player ${playerIndex + 1}`
-                      : "Set as Player"}
+                    {playerLabel}
                   </button>
-
                   {playerIndex === -1 && (
                     <div className="flex gap-3.5">
-                      {" "}
                       <button onClick={() => onUpdate(user)}>✎</button>
                       {!isEdit && (
                         <button onClick={() => onDelete(index)}>✖︎</button>
