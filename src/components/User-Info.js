@@ -52,28 +52,8 @@ function UserInfo({ players, setPlayers }) {
     }
   };
 
-  const onSetPlayer = (user) => {
-    const array = [...players];
-    array.push(user);
-    setPlayers(array);
-    // setisUnsetPlayer(true)
-  };
-  //   const onUnsetPlayer =useMemo( (user) => {
-  //     if (isUnsetPlayer === true){
-  //       const array = [...players];
-  //       array.pop(user);
-  //       setPlayers(array);
-  //     }
 
-  //  },[isUnsetPlayer] )
-
-  const onUnsetPlayer = (user) => {
-    const array = [...players];
-    array.pop(user);
-    setPlayers(array);
-  };
-
-  const togglePlayerStatus = (user) => {
+  const playerStatus = (user) => {
     setPlayers((prev) => {
       if (prev.includes(user)) {
         return prev.filter((player) => player !== user);
@@ -125,7 +105,7 @@ function UserInfo({ players, setPlayers }) {
                 <div className="flex gap-3.5">
                   <button
                     //disabled={playerIndex !== -1 || players.length === 2}
-                    onClick={() => togglePlayerStatus(user)}
+                    onClick={() => playerStatus(user)}
                     // onChange={() => (playerIndex !== -1 ? onUnsetPlayer(user) : onSetPlayer(user))}
                     //  onClick={() => (playerIndex !== -1 ? onUnsetPlayer(user) : onSetPlayer(user))}
                     className={clsx(

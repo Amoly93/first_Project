@@ -43,6 +43,11 @@ function XO({ players }) {
     setPlayer(lastPlayer);
   };
 
+  const restartButton = () =>{
+    setItems(defaultItems);
+     setPlayer(x);
+  }
+
   return (
     <div className="container max-w-2xl mx-auto space-y-4">
       <div className="space-y-2.5">
@@ -50,10 +55,10 @@ function XO({ players }) {
         <div className="flex justify-center flex-row gap-2.5">
           {checkWinner && (
             <h1 className="text-center">
-              Winner is Player {player === x ? players[0] : players[1]} 🏆
+              Winner is Player {player === x ? players[1] : players[0]} 🏆
             </h1>
           )}
-          <button onClick={() => setItems(defaultItems)}>
+          <button onClick={() => restartButton()}>
             Restart Game ↩︎
           </button>
         </div>
@@ -63,7 +68,7 @@ function XO({ players }) {
          
         <p>👤 Player X is {players[0] || "--"}</p>
 
-        <p>👤 Player X is {players[1] || "--"}</p>
+        <p>👤 Player O is {players[1] || "--"}</p>
 
         </div>
       </div>
