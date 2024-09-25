@@ -1,12 +1,12 @@
 import clsx from "clsx";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 function UserInfo({ players, setPlayers }) {
   const [usersList, setUsersList] = useState([]);
   const [name, setName] = useState("");
   const [errors, setErrors] = useState("");
   const [isEdit, setIsEdit] = useState(false);
-
+  const [isUnsetPlayer, setisUnsetPlayer] = useState(false);
   const addFunction = () => {
     if (!name) {
       setErrors("This feild is required");
@@ -56,11 +56,31 @@ function UserInfo({ players, setPlayers }) {
     const array = [...players];
     array.push(user);
     setPlayers(array);
+    // setisUnsetPlayer(true)
   };
+  //   const onUnsetPlayer =useMemo( (user) => {
+  //     if (isUnsetPlayer === true){
+  //       const array = [...players];
+  //       array.pop(user);
+  //       setPlayers(array);
+  //     }
+
+  //  },[isUnsetPlayer] )
+
   const onUnsetPlayer = (user) => {
     const array = [...players];
     array.pop(user);
     setPlayers(array);
+  };
+
+  const togglePlayerStatus = (user) => {
+    setPlayers((prev) => {
+      if (prev.includes(user)) {
+        return prev.filter((player) => player !== user);
+      } else {
+        return [...prev, user];
+      }
+    });
   };
 
   return (
@@ -104,15 +124,10 @@ function UserInfo({ players, setPlayers }) {
                 <p className="text-center text-green-800">{user}</p>
                 <div className="flex gap-3.5">
                   <button
-                    className="underline"
-                    onClick={() => onUnsetPlayer(user)}
-                  >
-                    {" "}
-                    {playerIndex !== -1 ? `unset` : ""}
-                  </button>
-                  <button
-                    disabled={playerIndex !== -1 || players.length === 2}
-                    onClick={() => onSetPlayer(user)}
+                    //disabled={playerIndex !== -1 || players.length === 2}
+                    onClick={() => togglePlayerStatus(user)}
+                    // onChange={() => (playerIndex !== -1 ? onUnsetPlayer(user) : onSetPlayer(user))}
+                    //  onClick={() => (playerIndex !== -1 ? onUnsetPlayer(user) : onSetPlayer(user))}
                     className={clsx(
                       playerIndex === -1 && players.length === 2
                         ? "cursor-not-allowed text-gray-500"
@@ -120,7 +135,7 @@ function UserInfo({ players, setPlayers }) {
                     )}
                   >
                     {playerIndex !== -1
-                      ? `Player ${playerIndex + 1}`
+                      ? `UnSet Player ${playerIndex + 1}`
                       : "Set as Player"}
                   </button>
 
