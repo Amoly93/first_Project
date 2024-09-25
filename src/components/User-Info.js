@@ -57,6 +57,11 @@ function UserInfo({ players, setPlayers }) {
     array.push(user);
     setPlayers(array);
   };
+  const onUnsetPlayer = (user) => {
+    const array = [...players];
+    array.pop(user);
+    setPlayers(array);
+  };
 
   return (
     <div className="space-y-8">
@@ -99,6 +104,13 @@ function UserInfo({ players, setPlayers }) {
                 <p className="text-center text-green-800">{user}</p>
                 <div className="flex gap-3.5">
                   <button
+                    className="underline"
+                    onClick={() => onUnsetPlayer(user)}
+                  >
+                    {" "}
+                    {playerIndex !== -1 ? `unset` : ""}
+                  </button>
+                  <button
                     disabled={playerIndex !== -1 || players.length === 2}
                     onClick={() => onSetPlayer(user)}
                     className={clsx(
@@ -111,9 +123,15 @@ function UserInfo({ players, setPlayers }) {
                       ? `Player ${playerIndex + 1}`
                       : "Set as Player"}
                   </button>
-                  <button onClick={() => onUpdate(user)}>✎</button>
-                  {!isEdit && (
-                    <button onClick={() => onDelete(index)}>✖︎</button>
+
+                  {playerIndex === -1 && (
+                    <div className="flex gap-3.5">
+                      {" "}
+                      <button onClick={() => onUpdate(user)}>✎</button>
+                      {!isEdit && (
+                        <button onClick={() => onDelete(index)}>✖︎</button>
+                      )}
+                    </div>
                   )}
                 </div>
               </div>
@@ -126,3 +144,6 @@ function UserInfo({ players, setPlayers }) {
 }
 
 export default UserInfo;
+// {!isEdit && (
+//   <button onClick={() => onDelete(index)}>✖︎</button>
+// }

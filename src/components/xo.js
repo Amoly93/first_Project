@@ -57,12 +57,14 @@ function XO({ players }) {
             Restart Game ↩︎
           </button>
         </div>
-        <p>{players.length}</p>
+     
 
         <div className="flex justify-center flex-row gap-10">
-          {/* <p>{ !item ? "--": item[0]}</p> */}
-          <p>👤 player X is {players[0]}</p>
-          <p>👤 player O is {players[1]}</p>
+         
+        <p>👤 Player X is {players[0] || "--"}</p>
+
+        <p>👤 Player X is {players[1] || "--"}</p>
+
         </div>
       </div>
 
