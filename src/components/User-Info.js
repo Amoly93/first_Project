@@ -7,6 +7,13 @@ function UserInfo({ players, setPlayers ,gameStart}) {
   const [errors, setErrors] = useState("");
   const [isEdit, setIsEdit] = useState(false);
 
+  const getPlayerLabel = (players, playerIndex) => {
+    if (playerIndex === -1 && players.length === 2 ) return "";
+    if (gameStart) return "";
+    if (playerIndex === -1) return "Set as a Player";
+    else return `Unset Player ${playerIndex + 1}`;
+  };
+  
   const addFunction = () => {
     if (!name) {
       setErrors("This feild is required");
@@ -135,9 +142,3 @@ function UserInfo({ players, setPlayers ,gameStart}) {
 
 export default UserInfo;
 
-const getPlayerLabel = (players, playerIndex) => {
-  if (playerIndex === -1 && players.length === 2 ) return "";
-  if (gameStart) return "";
-  if (playerIndex === -1) return "Set as a Player";
-  else return `Unset Player ${playerIndex + 1}`;
-};
