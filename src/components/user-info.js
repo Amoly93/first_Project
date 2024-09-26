@@ -6,9 +6,10 @@ function UserInfo({ players, setPlayers, items }) {
   const [name, setName] = useState("");
   const [errors, setErrors] = useState("");
   const [isEdit, setIsEdit] = useState(false);
-
+  const checkItems = items.every(item => item === "")
+ 
   const getPlayerLabel = (players, playerIndex) => {
-    if (playerIndex === -1 && players.length === 2) return "";
+    if (playerIndex === -1 && players.length === 2 || !checkItems) return "";
     if (playerIndex === -1) return "Set as a Player";
     else return `Unset Player ${playerIndex + 1}`;
   };

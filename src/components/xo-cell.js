@@ -27,7 +27,7 @@ function XOCell({
         setIsHovered(false);
         xoFunc(index);
       }}
-      disabled={checkWinner || (items[index] && checkPlayer)}
+      disabled={checkWinner || (items[index] || checkPlayer)}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
