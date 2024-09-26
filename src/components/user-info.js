@@ -6,22 +6,25 @@ function UserInfo({ players, setPlayers, items }) {
   const [name, setName] = useState("");
   const [errors, setErrors] = useState("");
   const [isEdit, setIsEdit] = useState(false);
-  const checkItems = items.every(item => item === "")
- 
+
   const getPlayerLabel = (players, playerIndex) => {
-    if (playerIndex === -1 && players.length === 2 || !checkItems) return "";
+    const isGameStarted = items.every((item) => item === "");
+    if ((playerIndex === -1 && players.length === 2) || !isGameStarted)
+      return "";
     if (playerIndex === -1) return "Set as a Player";
     else return `Unset Player ${playerIndex + 1}`;
   };
 
-  const addFunction = () => {
+  const addUpdateUser = () => {
     if (!name) {
       setErrors("This feild is required");
     } else if (isEdit) {
-      const newArray = [...usersList];
-      const getUserIndex = usersList.findIndex((props) => props === name);
-      newArray.splice(getUserIndex, 1, name);
-      setUsersList(newArray);
+      setUsersList((prev) => {
+        prev = [...prev];
+        const getUserIndex = usersList.indexOf(name);
+        prev.splice(getUserIndex, 1, name);
+        return prev;
+      });
       setIsEdit(false);
       setName("");
     } else if (usersList.includes(name)) {
@@ -32,39 +35,36 @@ function UserInfo({ players, setPlayers, items }) {
     }
   };
 
-  useEffect(() => {
-    if (!!name) setErrors("");
-  }, [name]);
-
   const onUpdate = (user) => {
     setIsEdit(true);
     setName(user);
   };
 
   const onDelete = (index) => {
-    const newArray = [...usersList];
-    newArray.splice(index, 1);
-    setUsersList(newArray);
-    if (players.includes(usersList[index])) {
-      const playerIndex = players.findIndex(
-        (props) => props === usersList[index]
-      );
-      const newPlayerArray = [...players];
-      newPlayerArray.splice(playerIndex, 1);
-      setPlayers(newPlayerArray);
-    }
+    setUsersList((prev) => {
+      prev = [...prev];
+      prev.splice(index, 1);
+      return prev;
+    });
   };
 
-  const playerStatus = (user) => {
-    const array = [...players];
-    if (array.includes(user)) {
-      const playerIndex = players.findIndex((props) => props === user);
-      array.splice(playerIndex, 1);
-    } else {
-      array.push(user);
-    }
-    setPlayers(array);
+  const onUpdatePlayerStatus = (user) => {
+    setPlayers((prev) => {
+      prev = [...prev];
+      if (prev.includes(user)) {
+        const playerIndex = prev.indexOf(user);
+        prev.splice(playerIndex, 1);
+      } else {
+        prev.push(user);
+      }
+
+      return prev;
+    });
   };
+
+  useEffect(() => {
+    if (!!name) setErrors("");
+  }, [name]);
 
   return (
     <div className="space-y-8">
@@ -84,7 +84,7 @@ function UserInfo({ players, setPlayers, items }) {
           </div>
         </div>
         <button
-          onClick={addFunction}
+          onClick={addUpdateUser}
           className={clsx(
             "bg-orange-500 px-6 text-white text-sm hover:bg-neutral-800 rounded-md h-10",
             errors && "mb-5"
@@ -100,14 +100,14 @@ function UserInfo({ players, setPlayers, items }) {
         </p>
         <div className="divide-y divide-white">
           {usersList.map((user, index) => {
-            const playerIndex = players.findIndex((props) => props === user);
+            const playerIndex = players.indexOf(user);
             return (
               <div className="flex justify-between py-2">
                 <p className="text-green-800 truncate w-36">{user}</p>
                 <div className="flex gap-3.5">
                   <button
                     disabled={playerIndex === -1 && players.length === 2}
-                    onClick={() => playerStatus(user)}
+                    onClick={() => onUpdatePlayerStatus(user)}
                     className={clsx(
                       playerIndex === -1 && players.length === 2
                         ? "cursor-not-allowed text-gray-500"

@@ -58,14 +58,11 @@ function XO({ players, items, setItems }) {
           )}
           <button onClick={onRestart}>Restart Game ↩︎</button>
         </div>
-
         <div className="flex justify-center flex-row gap-10">
           <p>👤 Player X is {players[0] || "--"}</p>
-
           <p>👤 Player O is {players[1] || "--"}</p>
         </div>
       </div>
-
       <div className={clsx("grid grid-cols-3 px-24")}>
         {items.map((item, index) => (
           <XOCell
