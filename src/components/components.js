@@ -2,13 +2,16 @@ import XO from "./xo";
 import { useState } from "react";
 import UserInfo from "./user-info";
 
+export const defaultItems = Array(9).fill("");
+
 function Components() {
   const [players, setPlayers] = useState([]);
-const [gameStart,setgameStart] = useState(false)
+  const [items, setItems] = useState(defaultItems);
+
   return (
     <>
-      <UserInfo players={players} setPlayers={setPlayers} gameStart={gameStart} />
-      <XO players={players} setgameStart={setgameStart}  />
+      <UserInfo players={players} setPlayers={setPlayers} items={items} />
+      <XO players={players} items={items} setItems={setItems} />
     </>
   );
 }

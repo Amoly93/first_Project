@@ -1,19 +1,18 @@
 import clsx from "clsx";
 import { useState, useEffect } from "react";
 
-function UserInfo({ players, setPlayers ,gameStart}) {
+function UserInfo({ players, setPlayers, items }) {
   const [usersList, setUsersList] = useState([]);
   const [name, setName] = useState("");
   const [errors, setErrors] = useState("");
   const [isEdit, setIsEdit] = useState(false);
 
   const getPlayerLabel = (players, playerIndex) => {
-    if (playerIndex === -1 && players.length === 2 ) return "";
-    if (gameStart) return "";
+    if (playerIndex === -1 && players.length === 2) return "";
     if (playerIndex === -1) return "Set as a Player";
     else return `Unset Player ${playerIndex + 1}`;
   };
-  
+
   const addFunction = () => {
     if (!name) {
       setErrors("This feild is required");
@@ -55,22 +54,16 @@ function UserInfo({ players, setPlayers ,gameStart}) {
     }
   };
 
-  const playerStatus = (user, index) => {
-  
+  const playerStatus = (user) => {
     const array = [...players];
-  
     if (array.includes(user)) {
       const playerIndex = players.findIndex((props) => props === user);
-  
       array.splice(playerIndex, 1);
     } else {
       array.push(user);
     }
-  
     setPlayers(array);
   };
-  
-
 
   return (
     <div className="space-y-8">
@@ -141,4 +134,3 @@ function UserInfo({ players, setPlayers ,gameStart}) {
 }
 
 export default UserInfo;
-

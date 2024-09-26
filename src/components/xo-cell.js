@@ -15,6 +15,7 @@ function XOCell({
 
   const isX = item === x;
   const checkPlayer = playersLength !== 2;
+  
   return (
     <button
       className={clsx(

@@ -1,11 +1,10 @@
 import clsx from "clsx";
 import XOCell from "./xo-cell";
 import { useState, useMemo } from "react";
+import { defaultItems } from "./components";
 
 export const x = "X";
 export const o = "O";
-
-const defaultItems = Array(9).fill("");
 
 const winningCases = [
   [0, 1, 2],
@@ -18,8 +17,7 @@ const winningCases = [
   [2, 5, 8],
 ];
 
-function XO({ players ,setgameStart}) {
-  const [items, setItems] = useState(defaultItems);
+function XO({ players, items, setItems }) {
   const [player, setPlayer] = useState(x);
 
   const lastPlayer = player === x ? o : x;
@@ -41,13 +39,12 @@ function XO({ players ,setgameStart}) {
     newItems[index] = player;
     setItems(newItems);
     setPlayer(lastPlayer);
-setgameStart(true)
   };
 
-  const restartButton = () =>{
+  const onRestart = () => {
     setItems(defaultItems);
-     setPlayer(x);
-  }
+    setPlayer(x);
+  };
 
   return (
     <div className="container max-w-2xl mx-auto space-y-4">
@@ -59,18 +56,13 @@ setgameStart(true)
               Winner is Player {player === x ? players[1] : players[0]} 🏆
             </h1>
           )}
-          <button onClick={() => restartButton()}>
-            Restart Game ↩︎
-          </button>
+          <button onClick={onRestart}>Restart Game ↩︎</button>
         </div>
-     
 
         <div className="flex justify-center flex-row gap-10">
-         
-        <p>👤 Player X is {players[0] || "--"}</p>
+          <p>👤 Player X is {players[0] || "--"}</p>
 
-        <p>👤 Player O is {players[1] || "--"}</p>
-
+          <p>👤 Player O is {players[1] || "--"}</p>
         </div>
       </div>
 
