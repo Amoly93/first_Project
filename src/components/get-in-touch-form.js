@@ -35,8 +35,8 @@ function GetInTouch() {
   ];
 
   return (
-    <div className="  bg-orange-500 w-full    ">
-      <div className="grid grid-cols md:grid-cols-2 gap-8  max-w-6xl conainer mx-auto  p-10">
+    <div className="bg-orange-500 w-full">
+      <div className="grid grid-cols md:grid-cols-2 gap-8 max-w-6xl conainer mx-auto p-10">
         <div className="space-y-8 ">
           <h1 className="text-4xl text-white">Get In Touch</h1>
           <form
