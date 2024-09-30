@@ -64,29 +64,34 @@ function GetInTouch() {
               {errors.email?.message}
             </span>
 
-
             {fields.map((field, index) => {
               return (
                 <div className="  space-x-1">
                   <input
                     className="px-2 h-10 w-60"
                     {...register(`address.${index}.name`)}
-                    placeholder={ `Enter your address ${index+1} `}
+                    placeholder={`Enter your address ${index + 1} `}
                   />
-               
+
                   <button
                     className="bg-red-500 text-white px-4 py-2 rounded-md mb-4"
-                    onClick={() => remove(index)}> ✖︎ </button>
-
-                 
+                    onClick={() => remove(index)}
+                  >
+                    {" "}
+                    ✖︎{" "}
+                  </button>
                 </div>
               );
             })}
             <div className="flex gap-3 text-white">
-              <p>Add your address optional  </p>
-             <button
-                    onClick={() => append({ name: "" })}
-                    className="bg-green-500 text-white px-4 py-2 rounded-md mb-4" > ✚</button>
+              <p>Add your address optional </p>
+              <button
+                onClick={() => append({ name: "" })}
+                className="bg-green-500 text-white px-4 py-2 rounded-md mb-4"
+              >
+                {" "}
+                ✚
+              </button>
             </div>
             <textarea
               rows={4}
@@ -107,7 +112,7 @@ function GetInTouch() {
             />
           </form>
         </div>
-        <div className="bg-gray-200 p-8 ">
+        <div className="bg-gray-200 p-8 space-y-6 ">
           {tabsData.map((tab) => (
             <div>
               <button
