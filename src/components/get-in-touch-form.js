@@ -55,14 +55,14 @@ function GetInTouch() {
             />
             {fields.map((field, index) => {
               return (
-                <div className="flex items-center gap-5">
+                <div className="flex items-center gap-2.5" key={field.id}>
                   <InputController
                     control={control}
                     placeholder={`Enter your address ${index + 1} `}
                     name={`address.${index}.name`}
                   />
                   <button
-                    className="bg-red-500 text-white px-4 py-2 rounded-md"
+                    className="bg-red-500 text-white px-4 py-2 rounded-sm"
                     onClick={() => remove(index)}
                   >
                     {"✖︎"}
@@ -72,11 +72,12 @@ function GetInTouch() {
             })}
             <button
               onClick={() => append({ name: "" })}
-              className="bg-green-500 text-white px-4 py-2 rounded-md mb-4"
+              className="bg-green-500 text-white px-4 py-2 rounded-sm mb-4"
+              type="button"
             >
               {"Add your address optional ✚"}
             </button>
-            <button className="border-2 border-white rounded-md h-10 text-white uppercase font-semibold hover:bg-white hover:text-orange-500">
+            <button className="border-2 border-white rounded-sm h-10 text-white uppercase font-semibold hover:bg-white hover:text-orange-500">
               Submit
             </button>
           </form>
@@ -85,9 +86,9 @@ function GetInTouch() {
           {tabsData.map((tab, index) => (
             <div>
               <button
-                className=" bg-white p-2 w-full"
+                className="bg-white p-2 w-full"
                 label={tab.label}
-                onClick={() => setActiveTab(index === activeTab ? null : index)}
+                onClick={() => setActiveTab(index)}
               >
                 <div className="flex justify-between">
                   {tab.label} <span>▶︎</span>{" "}
