@@ -1,15 +1,23 @@
 import { type } from "@testing-library/user-event/dist/type";
 import React from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { useState } from "react";
 
 function GetInTouch() {
-  const { register, control, handleSubmit, formState, reset } = useForm();
+  const { register, control, handleSubmit, formState, reset } = useForm({
+    defaultValues: {
+      address: [{ name: "" }],
+    },
+  });
   const { errors } = formState;
   const onSubmit = (data) => {
     console.log(data);
     reset();
   };
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "address",
+  });
   const tabsData = [
     {
       label: "Phasellus sed efficitur dolor?",
@@ -56,6 +64,30 @@ function GetInTouch() {
               {errors.email?.message}
             </span>
 
+
+            {fields.map((field, index) => {
+              return (
+                <div className="  space-x-1">
+                  <input
+                    className="px-2 h-10 w-60"
+                    {...register(`address.${index}.name`)}
+                    placeholder={ `Enter your address ${index+1} `}
+                  />
+               
+                  <button
+                    className="bg-red-500 text-white px-4 py-2 rounded-md mb-4"
+                    onClick={() => remove(index)}> ✖︎ </button>
+
+                 
+                </div>
+              );
+            })}
+            <div className="flex gap-3 text-white">
+              <p>Add your address optional  </p>
+             <button
+                    onClick={() => append({ name: "" })}
+                    className="bg-green-500 text-white px-4 py-2 rounded-md mb-4" > ✚</button>
+            </div>
             <textarea
               rows={4}
               className="px-2 "
