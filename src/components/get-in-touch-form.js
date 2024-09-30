@@ -59,7 +59,7 @@ function GetInTouch() {
                   <InputController
                     control={control}
                     placeholder={`Enter your address ${index + 1} `}
-                    name={`address.name`}
+                    name={`address.${index}.name`}
                   />
                   <button
                     className="bg-red-500 text-white px-4 py-2 rounded-md"
@@ -82,20 +82,18 @@ function GetInTouch() {
           </form>
         </div>
         <div className="bg-gray-200 p-8 space-y-6">
-          {tabsData.map((tab) => (
+          {tabsData.map((tab, index) => (
             <div>
               <button
                 className=" bg-white p-2 w-full"
                 label={tab.label}
-                onClick={() =>
-                  setActiveTab(tab.label === activeTab ? null : tab.label)
-                }
+                onClick={() => setActiveTab(index === activeTab ? null : index)}
               >
                 <div className="flex justify-between">
                   {tab.label} <span>▶︎</span>{" "}
                 </div>
               </button>
-              {tab.label === activeTab && <p className="p-5">{tab.content}</p>}
+              {index === activeTab && <p className="p-5">{tab.content}</p>}
             </div>
           ))}
         </div>
