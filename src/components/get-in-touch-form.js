@@ -3,7 +3,7 @@ import InputController from "./input-controller";
 import { useForm, useFieldArray } from "react-hook-form";
 
 function GetInTouch() {
-  const [activeTab, setActiveTab] = useState();
+  const [activeTab, setActiveTab] = useState(null);
 
   const { control, handleSubmit, reset } = useForm({
     defaultValues: {
@@ -88,7 +88,9 @@ function GetInTouch() {
               <button
                 className="bg-white p-2 w-full"
                 label={tab.label}
-                onClick={() => setActiveTab(index)}
+                onClick={() =>
+                  setActiveTab((prev) => (prev === index ? null : index))
+                }
               >
                 <div className="flex justify-between">
                   {tab.label} <span>▶︎</span>{" "}
