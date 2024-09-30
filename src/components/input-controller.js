@@ -16,7 +16,7 @@ function InputController({control,placeholderName ,inputName ,required}) {
         render={({ field: { onChange, onBlur, } ,fieldState:{error}}) => (
           <div>
           <input
-             className="px-2 h-10 w-60"
+             className="px-2 h-10 w-full"
             onChange={onChange}
             onBlur={onBlur}
             placeholder={placeholderName}
