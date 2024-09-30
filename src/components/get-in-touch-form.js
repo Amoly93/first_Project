@@ -2,6 +2,7 @@ import { type } from "@testing-library/user-event/dist/type";
 import React from "react";
 import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { useState } from "react";
+import InputController from "./input-controller";
 
 function GetInTouch() {
   const { register, control, handleSubmit, formState, reset } = useForm({
@@ -44,41 +45,33 @@ function GetInTouch() {
           <form
             className="flex flex-col gap-3 "
             onSubmit={handleSubmit(onSubmit)}
-            noValidate
           >
-            <input
-              className="px-2 h-10"
-              {...register("username", { required: "Name feild is required" })}
-              placeholder="Enter your name"
+            <InputController
+              control={control}
+              placeholderName={`Enter your name`}
+              inputName="username"
             />
-            <span className="text-red-600 text-xs">
-              {errors.username?.message}
-            </span>
 
-            <input
-              className="px-2 h-10"
-              {...register("email", { required: "Email feild is required" })}
-              placeholder="Enter a valid email address"
+            <InputController
+              control={control}
+              placeholderName={`Enter your email`}
+              inputName="email"
             />
-            <span className="text-red-600  text-xs">
-              {errors.email?.message}
-            </span>
 
             {fields.map((field, index) => {
               return (
                 <div className="  space-x-1">
-                  <input
-                    className="px-2 h-10 w-60"
-                    {...register(`address.${index}.name`)}
-                    placeholder={`Enter your address ${index + 1} `}
+                  <InputController
+                    control={control}
+                    placeholderName={`Enter your address ${index + 1} `}
+                    inputName={`address.name`}
                   />
-
                   <button
                     className="bg-red-500 text-white px-4 py-2 rounded-md mb-4"
                     onClick={() => remove(index)}
                   >
                     {" "}
-                    ✖︎{" "}
+                    {"✖︎"}
                   </button>
                 </div>
               );
@@ -89,8 +82,7 @@ function GetInTouch() {
                 onClick={() => append({ name: "" })}
                 className="bg-green-500 text-white px-4 py-2 rounded-md mb-4"
               >
-                {" "}
-                ✚
+                {"✚"}
               </button>
             </div>
             <textarea
