@@ -12,7 +12,7 @@ import {
 
 const router = createBrowserRouter([
   {
-    path: '/app',
+    path: '/',
     element: <App />,
     errorElement: <ErrorPage />,
   },{
