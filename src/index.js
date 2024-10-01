@@ -5,7 +5,8 @@ import App from "./App";
 import DetailsPage from "./details-page";
 import reportWebVitals from "./reportWebVitals";
 import ErrorPage from "./error-page";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider ,Navigate} from "react-router-dom";
+import { useEffect } from "react";
 
 const router = createBrowserRouter([
   {
@@ -17,13 +18,27 @@ const router = createBrowserRouter([
     path: "/details",
     element: <DetailsPage />,
     errorElement: <ErrorPage />,
+  }, {
+    path: "/",
+    element: <Navigate to="/home" replace />, // Redirect from root to /home
   },
 ]);
+
+// useEffect(() => {
+// if (window.location.pathname === "/"){
+//   return () => {
+//     redirect("/home")
+//   };
+// }
+
+
+// }, [])
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+   <RouterProvider router={router} />
   </React.StrictMode>
 );
 
