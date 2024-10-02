@@ -13,8 +13,10 @@ function Components() {
     <>
       <UserInfo players={players} setPlayers={setPlayers} items={items} />
       <XO players={players} items={items} setItems={setItems} />
-      <AboutEnergy />
-      <GetInTouch />
+      <div className="w-full">
+        <AboutEnergy />
+        <GetInTouch />
+      </div>
     </>
   );
 }
