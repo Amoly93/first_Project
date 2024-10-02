@@ -29,7 +29,7 @@ function AboutEnergy() {
           </p>
           <Link
             className="bg-orange-500 px-7 py-2  text-white rounded-md "
-            to="/detail"
+            to="/details"
           >
             {" LEARN MORE "}
           </Link>
