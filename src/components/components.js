@@ -1,5 +1,5 @@
 import XO from "./xo";
-import { useState,createContext } from "react";
+import { useState, createContext } from "react";
 import UserInfo from "./user-info";
 import GetInTouch from "./get-in-touch-form";
 import AboutEnergy from "./about-energy";
@@ -10,17 +10,15 @@ function Components() {
   const [players, setPlayers] = useState([]);
   const [items, setItems] = useState(defaultItems);
 
-
   return (
     <>
       <UserInfo players={players} setPlayers={setPlayers} items={items} />
       <XO players={players} items={items} setItems={setItems} />
       <div className="w-full">
-<subjectContext.Provider value="Energy Freedom with Solar and Storage">
-<AboutEnergy />
-<GetInTouch />
-</subjectContext.Provider>
-       
+        <subjectContext.Provider value="Energy Freedom with Solar and Storage">
+          <AboutEnergy />
+          <GetInTouch />
+        </subjectContext.Provider>
       </div>
     </>
   );
