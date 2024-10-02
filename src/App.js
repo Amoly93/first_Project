@@ -1,32 +1,16 @@
-import "./App.css";
-import ErrorPage from "./error-page";
-import DetailsPage from "./details-page";
-import HomePage from "./components/home-page";
-import {
-  createBrowserRouter,
-  Navigate,
-  RouterProvider,
-} from "react-router-dom";
+import "./app.css";
+import { useEffect } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 function App() {
-  const router = createBrowserRouter([
-    {
-      path: "/home",
-      element: <HomePage />,
-      errorElement: <ErrorPage />,
-    },
-    {
-      path: "/details",
-      element: <DetailsPage />,
-      errorElement: <ErrorPage />,
-    },
-    {
-      path: "/",
-      element: <Navigate to="/home" replace />,
-    },
-  ]);
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  return <RouterProvider router={router} />;
+  useEffect(() => {
+    if (location.pathname === "/") navigate("/home");
+  }, []);
+
+  return <Outlet />;
 }
 
 export default App;
