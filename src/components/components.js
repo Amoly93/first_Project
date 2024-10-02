@@ -12,6 +12,7 @@ function Components() {
 
   return (
     <>
+    
       <UserInfo players={players} setPlayers={setPlayers} items={items} />
       <XO players={players} items={items} setItems={setItems} />
       <div className="w-full">
