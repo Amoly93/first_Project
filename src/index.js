@@ -1,5 +1,5 @@
 import "./index.css";
-import App from "./app";
+import App from "./App";
 import React from "react";
 import ErrorPage from "./error-page";
 import ReactDOM from "react-dom/client";
