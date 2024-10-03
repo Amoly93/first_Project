@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./hooks/use-user-auth";
@@ -6,7 +6,7 @@ import InputController from "./components/input-controller";
 
 function Login() {
   const { control, handleSubmit, reset } = useForm();
-  const { setUserInfo } = useAuth();
+  const { userInfo,setUserInfo } = useAuth();
   const navigate = useNavigate();
 
   const login = (data) => {
@@ -15,6 +15,13 @@ function Login() {
     navigate("/details");
   };
 
+useEffect(()=>{
+  if (userInfo){
+    navigate("/details");
+  }
+  localStorage.setItem("user_Info", JSON.stringify(userInfo));
+
+},[userInfo])
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <form
