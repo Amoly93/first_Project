@@ -5,6 +5,7 @@ import ErrorPage from "./error-page";
 import ReactDOM from "react-dom/client";
 import DetailsPage from "./details-page";
 import HomePage from "./components/home-page";
+import Login from "./login";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "details",
         element: <DetailsPage />,
+        errorElement: <ErrorPage />,
+      },{
+        path: "login",
+        element: <Login />,
         errorElement: <ErrorPage />,
       },
     ],
