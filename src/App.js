@@ -13,6 +13,8 @@ function App() {
     }
   }, [location.pathname, navigate]);
 
+  
+
   return (
     <AuthContextProvider>
       <Navigation />

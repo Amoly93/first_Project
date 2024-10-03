@@ -16,7 +16,7 @@ const Navigation = () => {
     <NavLink
       to={to}
       className={({ isActive }) =>
-        clsx(isActive ? "bg-orange-500 text-white" : "text-gray-300", "p-2")
+        clsx(isActive ? "bg-orange-500 text-white" : "text-gray-300 hover:text-orange-500", "p-2")
       }
     >
       {label}
@@ -24,18 +24,12 @@ const Navigation = () => {
   );
 
   return (
-    <div className="flex items-center justify-center p-2 sm:items-stretch sm:justify-start">
-      <div className="hidden sm:ml-6 sm:block">
-        <div className="flex space-x-4">
-          {/* {navItems.map(({ to, label}) => 
-         
-              renderNavLink(to, label)
-          )} */}
-          {renderNavLink("home", "Home")}
-          {userInfo
-            ? renderNavLink("details", "Details")
-            : renderNavLink("login", "Login")}
-        </div>
+    <div className="fixed top-0 z-50 p-5 bg-white w-full shadow-lg">
+      <div className="container mx-auto max-w-5xl space-x-5">
+        {renderNavLink("home", "Home")}
+        {userInfo
+          ? renderNavLink("details", "Details")
+          : renderNavLink("login", "Login")}
       </div>
     </div>
   );
