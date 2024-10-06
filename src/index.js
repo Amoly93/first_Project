@@ -9,8 +9,10 @@ import Login from "./pages/login-page";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SignupPage from "./pages/signup-page";
+import ProtectedRoute from "./public/protected-route";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 
 const router = createBrowserRouter([
   {
@@ -24,7 +26,7 @@ const router = createBrowserRouter([
       },
       {
         path: "details",
-        element: <DetailsPage />,
+        element: <ProtectedRoute nav={<DetailsPage />}/>,
         errorElement: <ErrorPage />,
       },
       {
@@ -34,7 +36,7 @@ const router = createBrowserRouter([
       },
       {
         path: "signup",
-        element: <SignupPage />,
+        element: <ProtectedRoute nav={<SignupPage />}/>,
         errorElement: <ErrorPage />,
       },
     ],

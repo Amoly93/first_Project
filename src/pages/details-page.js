@@ -6,12 +6,6 @@ function DetailsPage() {
   const { userInfo } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!userInfo) {
-      navigate("login");
-    }
-  }, [userInfo]);
-
   return (
     <div className="flex flex-col items-center">
       {userInfo && (

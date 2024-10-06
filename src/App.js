@@ -7,11 +7,12 @@ function App() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (location.pathname === "/") {
-  //     navigate("/home");
-  //   }
-  // }, [location.pathname, navigate]);
+  useEffect(() => {
+    if (location.pathname === "/") {
+      navigate("/home");
+    }
+  }, [location.pathname, navigate]);
+ 
 
   return (
     <AuthContextProvider>

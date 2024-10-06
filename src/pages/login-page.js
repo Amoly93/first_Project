@@ -16,10 +16,7 @@ function Login() {
     navigate("/details");
   };
 
-  useEffect(() => {
-    if (userInfo) navigate("/details");
-  }, [userInfo]);
-
+ 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <form
