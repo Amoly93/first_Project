@@ -8,9 +8,9 @@ const Navigation = () => {
   const navigate = useNavigate();
   const navItems = [
     { to: "home", label: "Home", show: true,typeButton: "NavLink"},
-    { to: "login", label: "Login", show: true, typeButton: "NavLink"},
-    { to: "details", label: "Details", show: false,typeButton: "NavLink" },
-    { to: "logout", label: "logout", show: true,typeButton: "Button" },
+    { to: "login", label: "Login", show: userInfo ? false: true, typeButton: "NavLink"},
+    { to: "details", label: "Details", show: userInfo ? true: false,typeButton: "NavLink" },
+    { to: "logout", label: "logout", show: userInfo ? true: false,typeButton: "Button" },
   ];
 
   useEffect(()=>{
@@ -20,7 +20,8 @@ const Navigation = () => {
 
 const logoutButton =()=>{
   navigate("home");
-  setUserInfo(localStorage.removeItem("user_Info"))
+  localStorage.removeItem("user_Info");
+  setUserInfo(null);
 }
   return (
     <div className="fixed top-0 z-50 p-5 bg-white w-full shadow-lg">
@@ -30,7 +31,7 @@ const logoutButton =()=>{
             typeButton === "NavLink" ? (
               <NavLink
                 key={to}
-                to={to === "login" && userInfo ? "details" : to}
+                to={to}
                 className={({ isActive }) =>
                   clsx(
                     isActive ? "bg-orange-500 text-white" : "text-gray-300 hover:text-orange-500",
@@ -38,9 +39,9 @@ const logoutButton =()=>{
                   )
                 }
               >
-                {to === "login" && userInfo ? "Details" : label}
+                {label}
               </NavLink>
-            ) : typeButton === "Button" && userInfo ? (
+            ) :(
               <button
                 key={to}
                 onClick={logoutButton}
@@ -48,7 +49,7 @@ const logoutButton =()=>{
               >
                 {label}
               </button>
-            ) : null
+            ) 
           
           )
         )}
