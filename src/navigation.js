@@ -25,6 +25,11 @@ const Navigation = () => {
       show: !userInfo,
     },
     {
+      to: "signup",
+      label: "Signup",
+      show: !userInfo,
+    },
+    {
       to: "details",
       label: "Details",
       show: !!userInfo,

@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "./hooks/use-user-auth";
-import InputController from "./components/input-controller";
+import { useAuth } from "../hooks/use-user-auth";
+import InputController from "../components/input-controller";
 
 function Login() {
   const { control, handleSubmit, reset } = useForm();

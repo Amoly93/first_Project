@@ -3,11 +3,12 @@ import App from "./App";
 import React from "react";
 import ErrorPage from "./error-page";
 import ReactDOM from "react-dom/client";
-import DetailsPage from "./details-page";
+import DetailsPage from "./pages/details-page";
 import HomePage from "./components/home-page";
-import Login from "./login";
+import Login from "./pages/login-page";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import SignupPage from "./pages/signup-page";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -29,6 +30,11 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: "signup",
+        element: <SignupPage />,
         errorElement: <ErrorPage />,
       },
     ],

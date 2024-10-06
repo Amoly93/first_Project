@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useAuth } from "./hooks/use-user-auth";
+import { useAuth } from "../hooks/use-user-auth";
 import { useNavigate } from "react-router-dom";
 
 function DetailsPage() {
