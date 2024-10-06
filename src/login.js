@@ -6,22 +6,20 @@ import InputController from "./components/input-controller";
 
 function Login() {
   const { control, handleSubmit, reset } = useForm();
-  const { userInfo,setUserInfo } = useAuth();
+  const { userInfo, setUserInfo } = useAuth();
   const navigate = useNavigate();
 
   const login = (data) => {
     setUserInfo(data);
+    localStorage.setItem("user_info", JSON.stringify(data));
     reset();
     navigate("/details");
   };
 
-useEffect(()=>{
-  if (userInfo){
-    navigate("/details");
-  }
-  localStorage.setItem("user_Info", JSON.stringify(userInfo));
+  useEffect(() => {
+    if (userInfo) navigate("/details");
+  }, [userInfo]);
 
-},[userInfo])
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <form
