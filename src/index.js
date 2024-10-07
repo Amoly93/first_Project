@@ -7,12 +7,14 @@ import DetailsPage from "./pages/details-page";
 import HomePage from "./components/home-page";
 import Login from "./pages/login-page";
 import reportWebVitals from "./reportWebVitals";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import SignupPage from "./pages/signup-page";
-import ProtectedRoute from "./public/protected-route";
+import { ProtectedRoute } from "./route/protected-route";
+import { PublicRoute } from "./route/public-router";
+import { AuthContextProvider } from "./contexts/auth-context";
+import Navigation from "./navigation";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
 
 const router = createBrowserRouter([
   {
@@ -23,24 +25,44 @@ const router = createBrowserRouter([
         path: "home",
         element: <HomePage />,
         errorElement: <ErrorPage />,
+      }, {
+        path: "/",
+        element: (
+          <PublicRoute>
+            <Outlet />
+          </PublicRoute>
+        ),
+        children: [
+          {
+            path: "login",
+            element: <Login />,
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: "signup",
+            element: <SignupPage />,
+            errorElement: <ErrorPage />,
+          },
+        ],
       },
       {
-        path: "details",
-        element: <ProtectedRoute nav={<DetailsPage />}/>,
-        errorElement: <ErrorPage />,
-      },
-      {
-        path: "login",
-        element: <Login />,
-        errorElement: <ErrorPage />,
-      },
-      {
-        path: "signup",
-        element: <ProtectedRoute nav={<SignupPage />}/>,
-        errorElement: <ErrorPage />,
+        path: "/",
+        element: (
+          <ProtectedRoute>
+            <Outlet />
+          </ProtectedRoute>
+        ),
+        children: [
+          {
+            path: "details",
+            element: <DetailsPage />,
+            errorElement: <ErrorPage />,
+          },
+        ],
       },
     ],
   },
+ 
 ]);
 
 root.render(
