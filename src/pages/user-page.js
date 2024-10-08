@@ -5,9 +5,10 @@ import axios from 'axios';
 
 const Users = () => {
     const fetchData = async () => {
-        const response = await axios.get('https://jsonplaceholder.typicode.com/users');
+        const response = await axios.get('https://jsonplaceholder.org/users');
         return response.data;
       };
+      
   const { data, isLoading, error } = useQuery({
     queryKey: ['dataKey'],
     queryFn: fetchData,
@@ -24,7 +25,7 @@ const Users = () => {
   return (
     <div>
       {data.map((user) => (
-        <p key={user.id} className='p-2'>{user.name}</p>
+        <p key={user.id} className='p-2'>{user.firstname} {user.lastname}</p>
       ))}
     </div>
   );
