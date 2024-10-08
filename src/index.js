@@ -2,17 +2,15 @@ import "./index.css";
 import App from "./App";
 import React from "react";
 import ErrorPage from "./error-page";
-import ReactDOM from "react-dom/client";
-import DetailsPage from "./pages/details-page";
-import HomePage from "./components/home-page";
 import Login from "./pages/login-page";
-import reportWebVitals from "./reportWebVitals";
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import ReactDOM from "react-dom/client";
 import SignupPage from "./pages/signup-page";
+import HomePage from "./components/home-page";
+import DetailsPage from "./pages/details-page";
+import reportWebVitals from "./reportWebVitals";
+import { PublicRoute } from "./route/public-route";
 import { ProtectedRoute } from "./route/protected-route";
-import { PublicRoute } from "./route/public-router";
-import { AuthContextProvider } from "./contexts/auth-context";
-import Navigation from "./navigation";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -25,8 +23,8 @@ const router = createBrowserRouter([
         path: "home",
         element: <HomePage />,
         errorElement: <ErrorPage />,
-      }, {
-        path: "/",
+      },
+      {
         element: (
           <PublicRoute>
             <Outlet />
@@ -46,7 +44,6 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "/",
         element: (
           <ProtectedRoute>
             <Outlet />
@@ -62,7 +59,6 @@ const router = createBrowserRouter([
       },
     ],
   },
- 
 ]);
 
 root.render(

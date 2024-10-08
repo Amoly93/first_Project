@@ -1,7 +1,7 @@
 import { useEffect } from "react";
+import Navigation from "./navigation";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { AuthContextProvider } from "./contexts/auth-context";
-import Navigation from "./navigation";
 
 function App() {
   const location = useLocation();
@@ -12,7 +12,6 @@ function App() {
       navigate("/home");
     }
   }, [location.pathname, navigate]);
- 
 
   return (
     <AuthContextProvider>
