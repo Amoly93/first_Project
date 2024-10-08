@@ -8,9 +8,10 @@ import SignupPage from "./pages/signup-page";
 import HomePage from "./pages/home-page";
 import DetailsPage from "./pages/details-page";
 import reportWebVitals from "./reportWebVitals";
-import { PublicRoute } from "./route/public-route";
-import { ProtectedRoute } from "./route/protected-route";
+import { PublicRoute } from "./guard/public-route";
+import { ProtectedRoute } from "./guard/protected-route";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import Layout from "./components/layout/layout";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -20,40 +21,49 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "home",
-        element: <HomePage />,
-        errorElement: <ErrorPage />,
-      },
-      {
         element: (
-          <PublicRoute>
+          <Layout>
             <Outlet />
-          </PublicRoute>
+          </Layout>
         ),
         children: [
           {
-            path: "login",
-            element: <Login />,
+            path: "home",
+            element: <HomePage />,
             errorElement: <ErrorPage />,
           },
           {
-            path: "signup",
-            element: <SignupPage />,
-            errorElement: <ErrorPage />,
+            element: (
+              <PublicRoute>
+                <Outlet />
+              </PublicRoute>
+            ),
+            children: [
+              {
+                path: "login",
+                element: <Login />,
+                errorElement: <ErrorPage />,
+              },
+              {
+                path: "signup",
+                element: <SignupPage />,
+                errorElement: <ErrorPage />,
+              },
+            ],
           },
-        ],
-      },
-      {
-        element: (
-          <ProtectedRoute>
-            <Outlet />
-          </ProtectedRoute>
-        ),
-        children: [
           {
-            path: "details",
-            element: <DetailsPage />,
-            errorElement: <ErrorPage />,
+            element: (
+              <ProtectedRoute>
+                <Outlet />
+              </ProtectedRoute>
+            ),
+            children: [
+              {
+                path: "details",
+                element: <DetailsPage />,
+                errorElement: <ErrorPage />,
+              },
+            ],
           },
         ],
       },

@@ -16,29 +16,26 @@ function Login() {
     navigate("/details");
   };
 
- 
   return (
-    <div className="pt-32">
-      <form
-        className="bg-orange-500 p-5 space-y-5 container mx-auto max-w-lg"
-        onSubmit={handleSubmit(login)}
-      >
-        <p className="text-4xl">Login</p>
-        <InputController
-          control={control}
-          placeholder="Enter your name"
-          name="username"
-        />
-        <InputController
-          control={control}
-          placeholder="Enter your email"
-          name="email"
-        />
-        <button className="border border-white rounded-sm w-full py-2.5 text-white font-semibold hover:bg-white hover:text-orange-500">
-          Login
-        </button>
-      </form>
-    </div>
+    <form
+      className="bg-orange-500 p-5 space-y-5 container mx-auto max-w-lg"
+      onSubmit={handleSubmit(login)}
+    >
+      <p className="text-4xl">Login</p>
+      <InputController
+        control={control}
+        placeholder="Enter your name"
+        name="username"
+      />
+      <InputController
+        control={control}
+        placeholder="Enter your email"
+        name="email"
+      />
+      <button className="border border-white rounded-sm w-full py-2.5 text-white font-semibold hover:bg-white hover:text-orange-500">
+        Login
+      </button>
+    </form>
   );
 }
 

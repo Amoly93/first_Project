@@ -1,7 +1,6 @@
 import { useEffect } from "react";
-import Layout from "./layout";
-import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContextProvider } from "./contexts/auth-context";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 function App() {
   const location = useLocation();
@@ -15,7 +14,7 @@ function App() {
 
   return (
     <AuthContextProvider>
-      <Layout />
+      <Outlet />
     </AuthContextProvider>
   );
 }
