@@ -35,6 +35,11 @@ const Header = () => {
       show: !!userInfo,
     },
     {
+      to: "user",
+      label: "User",
+      show: !userInfo,
+    },
+    {
       label: "logout",
       show: !!userInfo,
       type: "button",
