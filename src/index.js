@@ -5,7 +5,7 @@ import ErrorPage from "./error-page";
 import Login from "./pages/login-page";
 import ReactDOM from "react-dom/client";
 import SignupPage from "./pages/signup-page";
-import HomePage from "./components/home-page";
+import HomePage from "./pages/home-page";
 import DetailsPage from "./pages/details-page";
 import reportWebVitals from "./reportWebVitals";
 import { PublicRoute } from "./route/public-route";

@@ -18,7 +18,7 @@ function Login() {
 
  
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="pt-32">
       <form
         className="bg-orange-500 p-5 space-y-5 container mx-auto max-w-lg"
         onSubmit={handleSubmit(login)}

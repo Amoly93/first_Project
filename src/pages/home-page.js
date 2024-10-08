@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Components from "./components";
+import Components from "../components/components";
 
 function HomePage() {
   const [textPrinted, setTextPrinted] = useState("");
@@ -27,8 +27,8 @@ function HomePage() {
   };
 
   return (
-    <div className="min-h-screen">
-      <div className="flex flex-col items-center gap-12 conainer mx-auto bg-neutral-200 pt-32">
+
+      <div className=" flex flex-col items-center justify-center gap-10 pt-32  ">
         <div className="flex flex-col items-center justify-center space-y-3.5">
           <p className="text-5xl text-center max-w-3xl">
             Why we should be greening our homes with plants
@@ -40,7 +40,7 @@ function HomePage() {
             installers
           </p>
         </div>
-        <div className="flex justify-center gap-8">
+        <div className="grid md:grid-cols-3 gap-10">
           {images.map((prop, index) => {
             return (
               <div className="relative flex flex-col items-center h-fit">
@@ -91,7 +91,7 @@ function HomePage() {
         </div>
         <Components />
       </div>
-    </div>
+
   );
 }
 
