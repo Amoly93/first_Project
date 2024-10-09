@@ -35,8 +35,8 @@ const Header = () => {
       show: !!userInfo,
     },
     {
-      to: "user",
-      label: "User",
+      to: "users",
+      label: "Users",
       show: !userInfo,
     },
     {

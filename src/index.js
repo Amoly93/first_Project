@@ -5,7 +5,7 @@ import ErrorPage from "./error-page";
 import Login from "./pages/login-page";
 import ReactDOM from "react-dom/client";
 import SignupPage from "./pages/signup-page";
-import Users from "./pages/user-page";
+import Users from "./pages/users-page";
 import HomePage from "./pages/home-page";
 import DetailsPage from "./pages/details-page";
 import reportWebVitals from "./reportWebVitals";
@@ -51,7 +51,7 @@ const router = createBrowserRouter([
                 element: <SignupPage />,
                 errorElement: <ErrorPage />,
               },{
-                path: "user",
+                path: "users",
                 element: <Users/>,
                 errorElement: <ErrorPage />,
               },
