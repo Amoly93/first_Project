@@ -8,7 +8,7 @@ const Users = () => {
   };
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ["dataKey"],
+    queryKey: ["USERS"],
     queryFn: fetchData,
   });
 
